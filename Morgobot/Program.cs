@@ -18,6 +18,7 @@ namespace Morgobot
             Console.WriteLine("Listening new messages");
 
             var settingsManager = new SettingsManager();
+            var brain = new Brain();
 
 
             var bot = new TelegramBotClient(settingsManager.GetSetting("botToken"));
@@ -34,7 +35,8 @@ namespace Morgobot
                         Console.WriteLine($"Incoming message from {update.Message.From.FirstName} {update.Message.From.LastName}: {update.Message.Text}");
 
                         var charId = update.Message.Chat.Id;
-                        var message = await bot.SendTextMessageAsync(charId, "Иди нахуй!");
+                        var reply = brain.Analyse(update.Message.Text);
+                        var message = await bot.SendTextMessageAsync(charId, reply);
                         offset = update.Id + 1;
                     }
                 }
