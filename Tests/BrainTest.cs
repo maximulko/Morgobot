@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Morgobot.Brain;
+using Morgobot.Brain.Movements;
 
 namespace Tests
 {

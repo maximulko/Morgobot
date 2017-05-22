@@ -1,4 +1,6 @@
-﻿namespace Morgobot.Brain
+﻿using Morgobot.Brain.Movements;
+
+namespace Morgobot.Brain
 {
     public class Brain
     {
