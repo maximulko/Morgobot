@@ -2,8 +2,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Telegram.Bot;
-using Microsoft.Extensions.Configuration.Json;
-using System.IO;
 
 namespace Morgobot
 {
@@ -19,13 +17,10 @@ namespace Morgobot
             Console.OutputEncoding = System.Text.Encoding.Unicode;
             Console.WriteLine("Listening new messages");
 
-            var conf = new JsonConfigurationProvider(new JsonConfigurationSource());
-            conf.Load(new FileStream("appSettings.json", FileMode.Open));
-            string botToken;
-            conf.TryGet("botToken", out botToken);
+            var settingsManager = new SettingsManager();
 
 
-            var bot = new TelegramBotClient(botToken);
+            var bot = new TelegramBotClient(settingsManager.GetSetting("botToken"));
             var offset = 0;
 
             while (true)
