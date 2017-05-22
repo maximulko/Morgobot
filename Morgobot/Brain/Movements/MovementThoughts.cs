@@ -24,7 +24,7 @@ namespace Morgobot.Brain.Movements
             if (_currentRoom.TryToFindBeer(message))
             {
                 beersFound++;
-                return $"Ура! Я нашел {beersFound} из 7 пив!";
+                return $"{_currentRoom.BeerFindMessage} Ура! Я нашел {beersFound} из 7 пив!";
             }
 
             if (!Commands.Any(c => message.StartsWith(c)))
@@ -33,13 +33,13 @@ namespace Morgobot.Brain.Movements
             }
 
             var direction = ConvertDirectionToEnum(message);
-            if(_currentRoom.Doors[direction] != null)
+            if(_currentRoom.CanMove(direction))
             {
                 _currentRoom = _currentRoom.Doors[direction];
                 return _currentRoom.Description;
             }
 
-            if(_currentRoom.NoWayMessages[direction] != null)
+            if(_currentRoom.HasMessage(direction))
             {
                 return _currentRoom.NoWayMessages[direction];
             }
@@ -79,47 +79,54 @@ namespace Morgobot.Brain.Movements
             var zal = new Room("Зал")
             {
                 Description = "Я в зале, тут тепло и кроватка.",
-                WordsForBeer = new string[] { "посмотри", "под", "подушкой" }
+                WordsForBeer = new string[] { "посмотри", "под", "подушкой" },
+                BeerFindMessage = "Поднимаю подушку и вижу под ней забытую бутылку пива, которую хотел выпить на ночь."
             };
 
             var koridor = new Room("Коридор")
             {
                 Description = "Я в коридоре, ничего интересного. На полу лежит ковер.",
-                WordsForBeer = new string[] { "посмотри", "под", "ковром" }
+                WordsForBeer = new string[] { "посмотри", "под", "ковром" },
+                BeerFindMessage = "Поднимаю ковер и вижу что что-то блеснуло. Это пиво!"
             };
             koridor.NoWayMessages[Direction.Backward] = "Не пойду, лифт не работает!";
 
             var kuhnya = new Room("Кухня")
             {
                 Description = "Я на кухня, тут есть холодильник и комп.",
-                WordsForBeer = new string[] { "посмотри", "в", "холодильнике" }
+                WordsForBeer = new string[] { "посмотри", "в", "холодильнике" },
+                BeerFindMessage = "Где ж еще ему быть."
             };
 
             var kladovka = new Room("Кладовка")
             {
                 Description = "Я в кладовке, темно и уютно.",
-                WordsForBeer = new string[] { "включи", "свет" }
+                WordsForBeer = new string[] { "включи", "свет" },
+                BeerFindMessage = "В темноте я вижу кучу пустых бутылок. Порывшись в ней я нахжу одну полную."
             };
 
             var vanna = new Room("Ванна")
             {
                 Description = "Я в ванной, горячей воды нет.",
-                WordsForBeer = new string[] { "посмотри", "в", "ванне" }
+                WordsForBeer = new string[] { "посмотри", "в", "ванне" },
+                BeerFindMessage = "Лежит, охлаждается."
             };
 
             var tualet = new Room("Туалет")
             {
                 Description = "Я в туалете, не мешай!",
-                WordsForBeer = new string[] { "посмотри", "в", "унитазе" }
+                WordsForBeer = new string[] { "посмотри", "в", "унитазе" },
+                BeerFindMessage = "Лежит, охлаждается."
             };
 
             var balkon = new Room("Балкон")
             {
-                Description = "Я на балконе, можно покурить",
-                WordsForBeer = new string[] { "посмотри", "в", "окно" }
+                Description = "Я на балконе, можно покурить.",
+                WordsForBeer = new string[] { "посмотри", "в", "окно" },
+                BeerFindMessage = "На ветке дерева висит на веревке еще одна бутылка. Как она туда попала? Подтягиваю её шваброй."
             };
 
-            balkon.NoWayMessages[Direction.Forward] = "Не стОит";
+            balkon.NoWayMessages[Direction.Forward] = "Не стОит.";
 
             zal.Doors[Direction.Backward] = koridor;
             koridor.Doors[Direction.Forward] = zal;
