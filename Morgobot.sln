@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.0
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Morgobot", "Morgobot\Morgobot.csproj", "{BD32E4D1-758E-4405-B159-A494219518FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Morgobot", "Morgobot\Morgobot.csproj", "{BD32E4D1-758E-4405-B159-A494219518FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{7C461AB3-1DEC-44F5-80BB-CC6BE996EBA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{BD32E4D1-758E-4405-B159-A494219518FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD32E4D1-758E-4405-B159-A494219518FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD32E4D1-758E-4405-B159-A494219518FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C461AB3-1DEC-44F5-80BB-CC6BE996EBA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C461AB3-1DEC-44F5-80BB-CC6BE996EBA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C461AB3-1DEC-44F5-80BB-CC6BE996EBA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C461AB3-1DEC-44F5-80BB-CC6BE996EBA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -22,7 +22,7 @@ namespace Morgobot
         static IServiceProvider CreateServiceProvider()
         {
             var serviceProvider = new ServiceCollection()
-                .AddSingleton<Brain>()
+                .AddSingleton<Brain.Brain>()
                 .AddSingleton<Server>()
                 .AddSingleton<SettingsManager>()
                 .BuildServiceProvider();
