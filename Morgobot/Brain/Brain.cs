@@ -29,9 +29,9 @@ namespace Morgobot.Brain
                 message = message.Substring(1, message.Length - 1);
             }
 
-            return _movementThoughts.Analyse(message) 
-                ?? _basicThoughts.Analyse(message)
-                ?? _huefication.Analyse(message);
+            return _movementThoughts.Analyse(message)
+                ?? _huefication.Analyse(message)
+                ?? _basicThoughts.Analyse(message);
         }
     }
 }

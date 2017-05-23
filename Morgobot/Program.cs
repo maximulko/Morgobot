@@ -30,6 +30,7 @@ namespace Morgobot
                 .AddSingleton<BasicThoughts>()
                 .AddSingleton<MovementThoughts>()
                 .AddSingleton<Huefication>()
+                .AddSingleton<Grammar>()
                 .BuildServiceProvider();
 
             return serviceProvider;

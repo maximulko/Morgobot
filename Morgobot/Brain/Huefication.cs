@@ -55,7 +55,7 @@ namespace Morgobot.Brain
         {
             var words = _grammar.SplitByWords(message);
             
-            return HuefyWord(words.Last());
+            return HuefyWord(words.Last()) + "!";
         }
     }
 }
