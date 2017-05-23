@@ -1,10 +1,16 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace Morgobot.Brain
 {
     public class Huefication : IThought
     {
+        private readonly Grammar _grammar;
+
+        public Huefication(Grammar grammar)
+        {
+            _grammar = grammar;
+        }
+
         private readonly Dictionary<char, char> _rules = new Dictionary<char, char>
         {
             {'а', 'я'},
@@ -24,63 +30,33 @@ namespace Morgobot.Brain
             return HuefyPhrase(message);
         }
 
-        private string Huefy(string message)
+        private string HuefyWord(string word)
         {
-            message = message.ToLower();
-
-            int firstVowelIndex = FindFirstVowel(message);
+            int firstVowelIndex = _grammar.FindFirstVowel(word);
 
             if (firstVowelIndex == -1)
             {
                 return null;
             }
 
-            var firstPart = "Ху" + _rules[message[firstVowelIndex]];
-            var secondPart = message.Substring(firstVowelIndex + 1, message.Length - firstVowelIndex - 1);
+            var firstPart = "Ху" + _rules[word[firstVowelIndex]];
+            var secondPart = word.Substring(firstVowelIndex + 1, word.Length - firstVowelIndex - 1);
 
             return firstPart + secondPart;
         }
 
         private string HuefyPhrase(string message)
         {
-            var lastSpaceIndex = FindLastSpace(message);
+            var lastSpaceIndex = _grammar.FindLastSpace(message);
 
             if (lastSpaceIndex == -1)
             {
-                return Huefy(message);
+                return HuefyWord(message);
             }
 
             var lastWord = message.Substring(lastSpaceIndex + 1, message.Length - lastSpaceIndex - 1);
             
-            return Huefy(lastWord);
-        }
-
-        private int FindLastSpace(string message)
-        {
-            for (var index = message.Length-1; index >=0 ; index--)
-            {
-                if (message[index]==' ')
-                {
-                    return index;
-                }
-            }
-
-            return -1;
-        }
-
-        private int FindFirstVowel(string message)
-        {
-            var vowels = new[] { 'а', 'у', 'о', 'ы', 'и', 'э', 'я', 'ю', 'ё', 'е' };
-
-            for (var index = 0; index < message.Length; index++)
-            {
-                if (vowels.Contains(message[index]))
-                {
-                    return index;
-                }
-            }
-
-            return -1;
+            return HuefyWord(lastWord);
         }
     }
 }

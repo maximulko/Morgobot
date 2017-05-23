@@ -24,7 +24,7 @@ namespace Morgobot.Brain.Movements
 
         public bool TryToFindBeer(string message)
         {
-            if (HasBeer && WordsForBeer.All(w => message.Contains(w)))
+            if (HasBeer && WordsForBeer.All(message.Contains))
             {
                 HasBeer = false;
                 return true;
