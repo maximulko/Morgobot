@@ -36,7 +36,16 @@ namespace Morgobot
 
                         var charId = update.Message.Chat.Id;
                         var reply = _brain.Analyse(update.Message.Text);
-                        var message = await bot.SendTextMessageAsync(charId, reply);
+
+                        try
+                        {
+                            var message = await bot.SendTextMessageAsync(charId, reply);
+                        }
+                        catch(Exception e)
+                        {
+                            Console.WriteLine($"Can't sent message: {e.Message}");
+                        }
+
                         offset = update.Id + 1;
                     }
                 }
