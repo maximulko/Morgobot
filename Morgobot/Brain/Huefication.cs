@@ -40,6 +40,11 @@ namespace Morgobot.Brain
                 return null;
             }
 
+            while (_grammar.IsVowel(word[firstVowelIndex + 1]))
+            {
+                firstVowelIndex++;
+            }
+
             var firstPart = "Ху" + _rules[word[firstVowelIndex]];
             var secondPart = word.Substring(firstVowelIndex + 1, word.Length - firstVowelIndex - 1);
 
