@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Morgobot.Brain
 {
-    public class Huefication
+    public class Huefication : IThought
     {
         private readonly Dictionary<char, char> _rules = new Dictionary<char, char>
         {
@@ -19,7 +19,12 @@ namespace Morgobot.Brain
             {'е', 'е'},
         };
 
-        public string Huefy(string message)
+        public string Analyse(string message)
+        {
+            return HuefyPhrase(message);
+        }
+
+        private string Huefy(string message)
         {
             message = message.ToLower();
 
@@ -36,7 +41,7 @@ namespace Morgobot.Brain
             return firstPart + secondPart;
         }
 
-        public string HuefyPhrase(string message)
+        private string HuefyPhrase(string message)
         {
             var lastSpaceIndex = FindLastSpace(message);
 

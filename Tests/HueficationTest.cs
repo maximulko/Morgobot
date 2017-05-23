@@ -17,12 +17,12 @@ namespace Tests
         [TestMethod]
         public void Test()
         {
-            Assert.AreEqual("Хуёжик", _huefication.Huefy("Ножик"));
-            Assert.AreEqual("Хуыква", _huefication.Huefy("Тыква"));
-            Assert.AreEqual("Хуебо", _huefication.Huefy("Небо"));
-            Assert.AreEqual("Хуяря", _huefication.Huefy("Харя"));
+            Assert.AreEqual("Хуёжик", _huefication.Analyse("Ножик"));
+            Assert.AreEqual("Хуыква", _huefication.Analyse("Тыква"));
+            Assert.AreEqual("Хуебо", _huefication.Analyse("Небо"));
+            Assert.AreEqual("Хуяря", _huefication.Analyse("Харя"));
 
-            Assert.AreEqual("Хуива", _huefication.HuefyPhrase("Иди выпей пива"));
+            Assert.AreEqual("Хуива", _huefication.Analyse("Иди выпей пива"));
         }
     }
 }

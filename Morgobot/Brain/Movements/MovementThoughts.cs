@@ -4,10 +4,10 @@ namespace Morgobot.Brain.Movements
 {
     public class MovementThoughts : IThought
     {
-        private readonly string[] Commands = { "вперед", "направо", "назад", "налево" };
+        private readonly string[] _commands = { "вперед", "направо", "назад", "налево" };
 
         private Room _currentRoom=null;
-        private int beersFound = 0;
+        private int _beersFound = 0;
 
         public string Analyse(string message)
         {
@@ -23,11 +23,11 @@ namespace Morgobot.Brain.Movements
 
             if (_currentRoom.TryToFindBeer(message))
             {
-                beersFound++;
-                return $"{_currentRoom.BeerFindMessage} Ура! Я нашел {beersFound} из 7 пив!";
+                _beersFound++;
+                return $"{_currentRoom.BeerFindMessage} Ура! Я нашел {_beersFound} из 7 пив!";
             }
 
-            if (!Commands.Any(message.StartsWith))
+            if (!_commands.Any(message.StartsWith))
             {
                 return null;
             }
@@ -51,22 +51,22 @@ namespace Morgobot.Brain.Movements
 
         private Direction ConvertDirectionToEnum(string message)
         {
-            if (message.Contains(Commands[0]))
+            if (message.Contains(_commands[0]))
             {
                 return Direction.Forward;
             }
 
-            if (message.Contains(Commands[1]))
+            if (message.Contains(_commands[1]))
             {
                 return Direction.Right;
             }
 
-            if (message.Contains(Commands[2]))
+            if (message.Contains(_commands[2]))
             {
                 return Direction.Backward;
             }
 
-            if (message.Contains(Commands[3]))
+            if (message.Contains(_commands[3]))
             {
                 return Direction.Left;
             }

@@ -2,13 +2,6 @@
 {
     public class BasicThoughts : IThought
     {
-        private readonly Huefication _huefication;
-
-        public BasicThoughts(Huefication huefication)
-        {
-            _huefication = huefication;
-        }
-
         public string Analyse(string message)
         {
             if (message.Contains("гусь"))
@@ -34,13 +27,6 @@
             if (message.Contains("привет"))
             {
                 return "Привет, козлик!";
-            }
-
-            var huefiedMessage = _huefication.HuefyPhrase(message);
-
-            if (!string.IsNullOrWhiteSpace(huefiedMessage))
-            {
-                return huefiedMessage + "!";
             }
 
             return "Иди нахуй!";

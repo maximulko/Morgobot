@@ -6,11 +6,13 @@ namespace Morgobot.Brain
     {
         private readonly BasicThoughts _basicThoughts;
         private readonly MovementThoughts _movementThoughts;
+        private readonly Huefication _huefication;
 
-        public Brain(BasicThoughts basicThoughts, MovementThoughts movementThoughts)
+        public Brain(BasicThoughts basicThoughts, MovementThoughts movementThoughts, Huefication huefication)
         {
             _basicThoughts = basicThoughts;
             _movementThoughts = movementThoughts;
+            _huefication = huefication;
         }
 
         public string Analyse(string message)
@@ -28,7 +30,8 @@ namespace Morgobot.Brain
             }
 
             return _movementThoughts.Analyse(message) 
-                ?? _basicThoughts.Analyse(message);
+                ?? _basicThoughts.Analyse(message)
+                ?? _huefication.Analyse(message);
         }
     }
 }
