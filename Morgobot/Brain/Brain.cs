@@ -15,6 +15,11 @@ namespace Morgobot.Brain
 
         public string Analyse(string message)
         {
+            if (message == null)
+            {
+                return null;
+            }
+
             message = message.ToLower();
 
             if (message.StartsWith("/"))
