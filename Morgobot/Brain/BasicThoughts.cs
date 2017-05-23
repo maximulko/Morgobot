@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Morgobot.Brain
+﻿namespace Morgobot.Brain
 {
     public class BasicThoughts : IThought
     {

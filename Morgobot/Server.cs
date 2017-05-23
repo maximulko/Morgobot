@@ -7,8 +7,8 @@ namespace Morgobot
 {
     public class Server
     {
-        private Brain.Brain _brain;
-        private SettingsManager _settingsManager;
+        private readonly Brain.Brain _brain;
+        private readonly SettingsManager _settingsManager;
 
         public Server(Brain.Brain brain, SettingsManager settingsManager)
         {

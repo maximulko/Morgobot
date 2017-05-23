@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
+using Morgobot.Brain;
+using Morgobot.Brain.Movements;
 
 namespace Morgobot
 {
@@ -25,6 +27,8 @@ namespace Morgobot
                 .AddSingleton<Brain.Brain>()
                 .AddSingleton<Server>()
                 .AddSingleton<SettingsManager>()
+                .AddSingleton<BasicThoughts>()
+                .AddSingleton<MovementThoughts>()
                 .BuildServiceProvider();
 
             return serviceProvider;

@@ -17,6 +17,11 @@ namespace Morgobot.Brain
         {
             message = message.ToLower();
 
+            if (message.StartsWith("/"))
+            {
+                message = message.Substring(1, message.Length - 1);
+            }
+
             return _movementThoughts.Analyse(message) 
                 ?? _basicThoughts.Analyse(message);
         }

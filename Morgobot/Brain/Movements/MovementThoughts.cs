@@ -4,7 +4,7 @@ namespace Morgobot.Brain.Movements
 {
     public class MovementThoughts : IThought
     {
-        private string[] Commands = { "вперед", "направо", "назад", "налево" };
+        private readonly string[] Commands = { "вперед", "направо", "назад", "налево" };
 
         private Room _currentRoom=null;
         private int beersFound = 0;
