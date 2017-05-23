@@ -15,14 +15,15 @@ namespace Tests
         }
 
         [TestMethod]
-        public void Test()
+        public void Huefication()
         {
-            Assert.AreEqual("Хуёжик", _huefication.Analyse("Ножик"));
-            Assert.AreEqual("Хуыква", _huefication.Analyse("Тыква"));
-            Assert.AreEqual("Хуебо", _huefication.Analyse("Небо"));
-            Assert.AreEqual("Хуяря", _huefication.Analyse("Харя"));
-            Assert.AreEqual("Хуяль", _huefication.Analyse("Рояль"));
-            Assert.AreEqual("Хуива", _huefication.Analyse("Иди выпей пива"));
+            Assert.AreEqual("Хуёжик!", _huefication.Analyse("Ножик"));
+            Assert.AreEqual("Хуыква!", _huefication.Analyse("Тыква"));
+            Assert.AreEqual("Хуебо!", _huefication.Analyse("Небо"));
+            Assert.AreEqual("Хуяря!", _huefication.Analyse("Харя"));
+            Assert.AreEqual("Хуяль!", _huefication.Analyse("Рояль"));
+            Assert.AreEqual("Хуива!", _huefication.Analyse("Иди выпей пива"));
+            Assert.AreEqual("Хуя!", _huefication.Analyse("Аааааааааааааа"));
         }
     }
 }

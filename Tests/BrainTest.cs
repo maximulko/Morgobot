@@ -18,7 +18,7 @@ namespace Tests
         [TestMethod]
         public void BasicThoughtsTest()
         {
-            Assert.AreEqual("Иди нахуй!", _brain.Analyse("Абырвалг"));
+            
         }
 
         [TestMethod]

@@ -40,7 +40,7 @@ namespace Morgobot.Brain
                 return null;
             }
 
-            while (_grammar.IsVowel(word[firstVowelIndex + 1]))
+            while (firstVowelIndex < word.Length - 1 && _grammar.IsVowel(word[firstVowelIndex + 1]))
             {
                 firstVowelIndex++;
             }

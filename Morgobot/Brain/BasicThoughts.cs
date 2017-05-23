@@ -29,7 +29,7 @@
                 return "Привет, козлик!";
             }
 
-            return "Иди нахуй!";
+            return null;
         }
     }
 }

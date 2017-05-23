@@ -30,8 +30,9 @@ namespace Morgobot.Brain
             }
 
             return _movementThoughts.Analyse(message)
+                ?? _basicThoughts.Analyse(message)
                 ?? _huefication.Analyse(message)
-                ?? _basicThoughts.Analyse(message);
+                ?? "Иди нахуй!";
         }
     }
 }
