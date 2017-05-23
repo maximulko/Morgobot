@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Morgobot.Brain
 {
@@ -47,16 +48,9 @@ namespace Morgobot.Brain
 
         private string HuefyPhrase(string message)
         {
-            var lastSpaceIndex = _grammar.FindLastSpace(message);
-
-            if (lastSpaceIndex == -1)
-            {
-                return HuefyWord(message);
-            }
-
-            var lastWord = message.Substring(lastSpaceIndex + 1, message.Length - lastSpaceIndex - 1);
+            var words = _grammar.SplitByWords(message);
             
-            return HuefyWord(lastWord);
+            return HuefyWord(words.Last());
         }
     }
 }
