@@ -40,7 +40,7 @@
 
             if (!string.IsNullOrWhiteSpace(huefiedMessage))
             {
-                return huefiedMessage;
+                return huefiedMessage + "!";
             }
 
             return "Иди нахуй!";

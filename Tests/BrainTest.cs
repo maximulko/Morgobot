@@ -12,7 +12,7 @@ namespace Tests
         [TestInitialize]
         public void Init()
         {
-            _brain = new Brain(new BasicThoughts(), new MovementThoughts());
+            _brain = new Brain(new BasicThoughts(new Huefication()), new MovementThoughts());
         }
 
         [TestMethod]

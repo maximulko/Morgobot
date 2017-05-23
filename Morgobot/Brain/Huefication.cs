@@ -42,7 +42,7 @@ namespace Morgobot.Brain
 
             if (lastSpaceIndex == -1)
             {
-                return null;
+                return Huefy(message);
             }
 
             var lastWord = message.Substring(lastSpaceIndex + 1, message.Length - lastSpaceIndex - 1);
