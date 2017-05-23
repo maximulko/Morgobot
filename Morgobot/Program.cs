@@ -29,6 +29,7 @@ namespace Morgobot
                 .AddSingleton<SettingsManager>()
                 .AddSingleton<BasicThoughts>()
                 .AddSingleton<MovementThoughts>()
+                .AddSingleton<Huefication>()
                 .BuildServiceProvider();
 
             return serviceProvider;

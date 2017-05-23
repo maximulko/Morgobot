@@ -4,8 +4,8 @@ namespace Morgobot.Brain
 {
     public class Brain
     {
-        private BasicThoughts _basicThoughts;
-        private MovementThoughts _movementThoughts;
+        private readonly BasicThoughts _basicThoughts;
+        private readonly MovementThoughts _movementThoughts;
 
         public Brain(BasicThoughts basicThoughts, MovementThoughts movementThoughts)
         {

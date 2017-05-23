@@ -27,7 +27,7 @@ namespace Morgobot.Brain.Movements
                 return $"{_currentRoom.BeerFindMessage} Ура! Я нашел {beersFound} из 7 пив!";
             }
 
-            if (!Commands.Any(c => message.StartsWith(c)))
+            if (!Commands.Any(message.StartsWith))
             {
                 return null;
             }
