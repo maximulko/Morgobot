@@ -46,7 +46,7 @@
             }
 
             if ((message.Contains("пиво") || message.Contains("бухать") || message.Contains("водку"))
-                && !message.Contains("не"))
+                && !message.Contains(" не "))
             {
                 if (message.Contains("пойдем"))
                 {
