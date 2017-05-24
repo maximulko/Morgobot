@@ -50,6 +50,11 @@
                 return "Отсоси у тракториста!!! У ха ха ха ха!!!!";
             }
 
+            if (message.Contains("верни") && (message.Contains("коня") || message.Contains("лошадь")))
+            {
+                return "Не брал я твоего коня!!!";
+            }
+
             return null;
         }
     }
