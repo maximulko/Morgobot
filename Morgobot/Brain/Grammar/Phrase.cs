@@ -4,7 +4,6 @@ namespace Morgobot.Brain.Grammar
 {
     public class Phrase
     {
-        private readonly char[] _vowels = new[] { 'а', 'у', 'о', 'ы', 'и', 'э', 'я', 'ю', 'ё', 'е' };
         private readonly char[] _punctuationMarks = new[] { ',', '.', '!', '?', ';' };
 
         private readonly string[] _words;
