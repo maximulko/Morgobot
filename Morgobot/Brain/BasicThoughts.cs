@@ -35,6 +35,10 @@
                 {
                     return "Пойдем!";
                 }
+                if (message.Contains("пошли"))
+                {
+                    return "Пошли!";
+                }
                 if (message.Contains("давай"))
                 {
                     return "Давай!";
