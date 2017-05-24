@@ -11,7 +11,7 @@ namespace Tests
         [TestInitialize]
         public void Init()
         {
-            _huefication = new Huefication(new Grammar());
+            _huefication = new Huefication();
         }
 
         [TestMethod]

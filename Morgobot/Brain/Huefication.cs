@@ -1,17 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using Morgobot.Brain.Grammar;
 
 namespace Morgobot.Brain
 {
     public class Huefication : IThought
     {
-        private readonly Grammar _grammar;
-
-        public Huefication(Grammar grammar)
-        {
-            _grammar = grammar;
-        }
-
         private readonly Dictionary<char, char> _rules = new Dictionary<char, char>
         {
             {'а', 'я'},
@@ -31,16 +24,16 @@ namespace Morgobot.Brain
             return HuefyPhrase(message);
         }
 
-        private string HuefyWord(string word)
+        private string HuefyWord(Word word)
         {
-            int firstVowelIndex = _grammar.FindFirstVowel(word);
+            int firstVowelIndex = word.FindFirstVowel();
 
             if (firstVowelIndex == -1)
             {
                 return null;
             }
 
-            while (firstVowelIndex < word.Length - 1 && _grammar.IsVowel(word[firstVowelIndex + 1]))
+            while (firstVowelIndex < word.Length - 1 && word.IsVowel(firstVowelIndex + 1))
             {
                 firstVowelIndex++;
             }
@@ -53,8 +46,8 @@ namespace Morgobot.Brain
 
         private string HuefyPhrase(string message)
         {
-            var words = _grammar.SplitByWords(message);
-            var huefied = HuefyWord(words.Last());
+            var phrase = new Phrase(message);
+            var huefied = HuefyWord(phrase.LastWord());
 
             return huefied == null ? null : huefied + "!";
         }

@@ -2,6 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using Morgobot.Brain;
+using Morgobot.Brain.Grammar;
 using Morgobot.Brain.Movements;
 
 namespace Morgobot
@@ -30,7 +31,6 @@ namespace Morgobot
                 .AddSingleton<BasicThoughts>()
                 .AddSingleton<MovementThoughts>()
                 .AddSingleton<Huefication>()
-                .AddSingleton<Grammar>()
                 .BuildServiceProvider();
 
             return serviceProvider;

@@ -1,62 +1,64 @@
-﻿namespace Morgobot.Brain
+﻿using Morgobot.Brain.Grammar;
+
+namespace Morgobot.Brain
 {
     public class BasicThoughts : IThought
     {
         public string Analyse(string message)
         {
-            if (message.Contains("гусь"))
+            var phrase = new Phrase(message);
+
+            if (phrase.HasWord("гусь"))
             {
                 return "Сам ты гусь";
             }
 
-            if (message.Contains("пукнуть") || message.Contains("пукни"))
+            if (phrase.HasAnyWord("пукнуть","пукни"))
             {
                 return "\u2601";
             }
 
-            if (message.Contains("зигани"))
+            if (phrase.HasWord("зигани"))
             {
                 return "o/";
             }
 
-            if (message.Contains("спасибо"))
+            if (phrase.HasWord("спасибо"))
             {
                 return "Пожалуйста";
             }
 
-            if (message.Contains("привет"))
+            if (phrase.HasWord("привет"))
             {
                 return "Привет, козлик!";
             }
 
-            if (message.Contains("300") || message.Contains("триста") || message.Contains("три сотни"))
+            if (phrase.HasAnyWord("300", "триста", "три сотни"))
             {
                 return "Отсоси у тракториста!!! У ха ха ха ха!!!!";
             }
 
-            if ((message.Contains("верни") || message.Contains("вернем") || message.Contains("отдай"))
-                && (message.Contains("коня") || message.Contains("лошадь")))
+            if (phrase.HasAnyWord("верни", "вернем", "отдай") && phrase.HasAnyWord("коня", "лошадь"))
             {
                 return "Не брал я твоего коня!!!";
             }
 
-            if (message.Contains("телефон"))
+            if (phrase.HasWord("телефон"))
             {
                 return "Я разбил свой телефон((( Хнык((";
             }
 
-            if ((message.Contains("пиво") || message.Contains("бухать") || message.Contains("водку"))
-                && !message.Contains(" не "))
+            if (phrase.HasAnyWord("пиво", "бухать", "водку") && !message.Contains(" не "))
             {
-                if (message.Contains("пойдем"))
+                if (phrase.HasWord("пойдем"))
                 {
                     return "Пойдем!";
                 }
-                if (message.Contains("пошли"))
+                if (phrase.HasWord("пошли"))
                 {
                     return "Пошли!";
                 }
-                if (message.Contains("давай"))
+                if (phrase.HasWord("давай"))
                 {
                     return "Давай!";
                 }
