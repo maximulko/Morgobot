@@ -29,6 +29,22 @@
                 return "Привет, козлик!";
             }
 
+            if (message.Contains("300") || message.Contains("триста") || message.Contains("три сотни"))
+            {
+                return "Отсоси у тракториста!!! У ха ха ха ха!!!!";
+            }
+
+            if ((message.Contains("верни") || message.Contains("вернем") || message.Contains("отдай"))
+                && (message.Contains("коня") || message.Contains("лошадь")))
+            {
+                return "Не брал я твоего коня!!!";
+            }
+
+            if (message.Contains("телефон"))
+            {
+                return "Я разбил свой телефон((( Хнык((";
+            }
+
             if (message.Contains("пиво") || message.Contains("бухать") || message.Contains("водку"))
             {
                 if (message.Contains("пойдем"))
@@ -43,16 +59,6 @@
                 {
                     return "Давай!";
                 }
-            }
-
-            if (message.Contains("300") || message.Contains("триста") || message.Contains("три сотни"))
-            {
-                return "Отсоси у тракториста!!! У ха ха ха ха!!!!";
-            }
-
-            if (message.Contains("верни") && (message.Contains("коня") || message.Contains("лошадь")))
-            {
-                return "Не брал я твоего коня!!!";
             }
 
             return null;
