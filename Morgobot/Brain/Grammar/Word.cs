@@ -4,12 +4,22 @@ namespace Morgobot.Brain.Grammar
 {
     public class Word
     {
-        private readonly char[] _vowels = new[] {'а', 'у', 'о', 'ы', 'и', 'э', 'я', 'ю', 'ё', 'е'};
+        private readonly char[] _vowels = {'а', 'у', 'о', 'ы', 'и', 'э', 'я', 'ю', 'ё', 'е'};
+        private readonly char[] _consonants = { 'б', 'в', 'г', 'д', 'ж', 'з', 'й', 'к', 'л', 'м', 'н', 'п', 'р', 'с', 'т', 'ф', 'х', 'ц', 'ч', 'ш', 'щ' };
+        private readonly char[] _signs = {'ь', 'ъ'};
 
         private readonly string _word;
 
         public Word(string word)
         {
+            foreach (var letter in word.ToLower())
+            {
+                if (!_vowels.Contains(letter) && !_consonants.Contains(letter) && !_signs.Contains(letter))
+                {
+                    throw new GrammarException("Word can contain only vowels, consonants and signs.");
+                }
+            }
+
             _word = word;
         }
 
