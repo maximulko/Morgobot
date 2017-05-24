@@ -15,7 +15,7 @@ namespace Morgobot.Brain
             _huefication = huefication;
         }
 
-        public string Analyse(string message)
+        public string Analyse(string message, int fromId)
         {
             if (message == null)
             {

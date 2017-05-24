@@ -32,10 +32,10 @@ namespace Morgobot
                 {
                     foreach (var update in updates)
                     {
-                        Console.WriteLine($"Incoming message from {update.Message.From.FirstName} {update.Message.From.LastName}: {update.Message.Text}");
+                        Console.WriteLine($"Incoming message from {update.Message.From.FirstName} {update.Message.From.LastName} ({update.Message.From.Id}): {update.Message.Text}");
 
                         var charId = update.Message.Chat.Id;
-                        var reply = _brain.Analyse(update.Message.Text);
+                        var reply = _brain.Analyse(update.Message.Text, update.Message.From.Id);
 
                         try
                         {
