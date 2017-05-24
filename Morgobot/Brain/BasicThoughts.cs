@@ -29,6 +29,18 @@
                 return "Привет, козлик!";
             }
 
+            if (message.Contains("пиво") || message.Contains("бухать") || message.Contains("водку"))
+            {
+                if (message.Contains("пойдем"))
+                {
+                    return "Пойдем!";
+                }
+                if (message.Contains("давай"))
+                {
+                    return "Давай!";
+                }
+            }
+
             return null;
         }
     }
