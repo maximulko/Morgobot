@@ -16,7 +16,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void Test()
+        public void BeerGameTest()
         {
             Assert.AreEqual("Я в зале, тут тепло и кроватка.", _brain.Analyse("Где ты", 0));
             Assert.AreEqual("Поднимаю подушку и вижу под ней забытую бутылку пива, которую хотел выпить на ночь. Ура! Я нашел 1 из 7 пив!", _brain.Analyse("Посмотри под подушкой", 0));

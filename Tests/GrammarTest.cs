@@ -15,9 +15,9 @@ namespace Tests
         }
 
         [TestMethod]
-        public void Test()
+        public void SplitByWordsTest()
         {
-
+            CollectionAssert.AreEqual(new string[] {"первое", "второе", "третье", "четвертое", "пятое", "шестое"}, _grammar.SplitByWords("первое   второе,третье, четвертое!пятое;шестое"));
         }
     }
 }

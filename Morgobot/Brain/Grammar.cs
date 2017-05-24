@@ -5,6 +5,7 @@ namespace Morgobot.Brain
     public class Grammar
     {
         private readonly char[] _vowels = new[] { 'а', 'у', 'о', 'ы', 'и', 'э', 'я', 'ю', 'ё', 'е' };
+        private readonly char[] _punctuationMarks = new[] {',', '.', '!', '?', ';'};
 
         public int FindFirstVowel(string message)
         {
@@ -26,7 +27,12 @@ namespace Morgobot.Brain
 
         public string[] SplitByWords(string message)
         {
-            return message.Split(' ');
+            foreach (var punctuationMark in _punctuationMarks)
+            {
+                message = message.Replace(punctuationMark, ' ');
+            }
+
+            return message.Split(' ').Where(s=>!string.IsNullOrWhiteSpace(s)).ToArray();
         }
     }
 }

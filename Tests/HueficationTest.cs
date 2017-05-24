@@ -15,7 +15,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void Test()
+        public void HuefyTest()
         {
             Assert.AreEqual("Хуёжик!", _huefication.Analyse("Ножик"));
             Assert.AreEqual("Хуыква!", _huefication.Analyse("Тыква"));
