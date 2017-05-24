@@ -45,6 +45,11 @@
                 }
             }
 
+            if (message.Contains("300") || message.Contains("триста") || message.Contains("три сотни"))
+            {
+                return "Отсоси у тракториста!!! У ха ха ха ха!!!!";
+            }
+
             return null;
         }
     }
