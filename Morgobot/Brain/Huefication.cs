@@ -47,7 +47,7 @@ namespace Morgobot.Brain
         private string HuefyPhrase(string message)
         {
             var phrase = new Phrase(message);
-            var huefied = HuefyWord(phrase.LastWord());
+            var huefied = HuefyWord(phrase.LastWord);
 
             return huefied == null ? null : huefied + "!";
         }

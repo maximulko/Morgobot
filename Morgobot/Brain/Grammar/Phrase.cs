@@ -32,10 +32,7 @@ namespace Morgobot.Brain.Grammar
             return false;
         }
 
-        public Word LastWord()
-        {
-            return new Word(_words.Last());
-        }
+        public Word LastWord => new Word(_words.Last());
 
         private string[] SplitByWords(string message)
         {
