@@ -22,6 +22,11 @@ namespace Morgobot.Brain
                 return null;
             }
 
+            if (fromId ==279841413)
+            {
+                return "С Махмудом не общаюсь((";
+            }
+
             message = message.ToLower();
 
             if (message.StartsWith("/"))
