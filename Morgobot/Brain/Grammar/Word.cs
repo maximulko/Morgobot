@@ -18,7 +18,7 @@ namespace Morgobot.Brain.Grammar
             return _word;
         }
 
-        public int FindFirstVowel()
+        public int FindFirstVowelIndex()
         {
             for (var index = 0; index < _word.Length; index++)
             {

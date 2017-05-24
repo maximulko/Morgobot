@@ -26,7 +26,7 @@ namespace Morgobot.Brain
 
         private string HuefyWord(Word word)
         {
-            int firstVowelIndex = word.FindFirstVowel();
+            int firstVowelIndex = word.FindFirstVowelIndex();
 
             if (firstVowelIndex == -1)
             {
