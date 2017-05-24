@@ -48,7 +48,7 @@ namespace Morgobot.Brain
                 return "Я разбил свой телефон((( Хнык((";
             }
 
-            if (phrase.HasAnyWord("пиво", "бухать", "водку") && !message.Contains(" не "))
+            if (phrase.HasAnyWord("пиво", "бухать", "водку") && !phrase.HasWord("не"))
             {
                 if (phrase.HasWord("пойдем"))
                 {
