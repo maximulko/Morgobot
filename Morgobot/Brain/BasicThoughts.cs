@@ -45,7 +45,8 @@
                 return "Я разбил свой телефон((( Хнык((";
             }
 
-            if (message.Contains("пиво") || message.Contains("бухать") || message.Contains("водку"))
+            if ((message.Contains("пиво") || message.Contains("бухать") || message.Contains("водку"))
+                && !message.Contains("не"))
             {
                 if (message.Contains("пойдем"))
                 {

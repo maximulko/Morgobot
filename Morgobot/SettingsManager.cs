@@ -6,7 +6,7 @@ namespace Morgobot
 {
     public class SettingsManager
     {
-        private JsonConfigurationProvider _configurationProvider;
+        private readonly JsonConfigurationProvider _configurationProvider;
 
         public SettingsManager()
         {
