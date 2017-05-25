@@ -13,7 +13,7 @@ namespace Morgobot.Brain
 
             if (phrase.HasWord("гусь"))
             {
-                return "Сам ты гусь";
+                return "Сам ты гусь!";
             }
 
             if (phrase.HasAnyWord("пукнуть","пукни"))
@@ -36,7 +36,7 @@ namespace Morgobot.Brain
                 return "Привет, козлик!";
             }
 
-            if (phrase.HasAnyWord("300", "триста", "три сотни"))
+            if (phrase.HasAnyWord("300", "триста"))
             {
                 return "Отсоси у тракториста!!! У ха ха ха ха!!!!";
             }
