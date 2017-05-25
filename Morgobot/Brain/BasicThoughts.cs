@@ -67,6 +67,16 @@ namespace Morgobot.Brain
                 }
             }
 
+            if (phrase.LastWord.ToString() == "да")
+            {
+                return "Пизда!";
+            }
+
+            if (phrase.LastWord.ToString() == "нет")
+            {
+                return "Пидора ответ!";
+            }
+
             return null;
         }
     }
