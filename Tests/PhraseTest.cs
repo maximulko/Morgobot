@@ -4,7 +4,7 @@ using Morgobot.Brain.Grammar;
 namespace Tests
 {
     [TestClass]
-    public class PharaseTest
+    public class PhraseTest
     {
         private Phrase _phrase;
 
