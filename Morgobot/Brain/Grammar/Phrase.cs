@@ -8,8 +8,11 @@ namespace Morgobot.Brain.Grammar
 
         private readonly string[] _words;
 
+        private readonly string _originalMessage;
+
         public Phrase(string message)
         {
+            _originalMessage = message;
             _words = SplitByWords(message);
         }
 
@@ -32,6 +35,7 @@ namespace Morgobot.Brain.Grammar
         }
 
         public Word LastWord => new Word(_words.Last());
+        public Word FirstWord => new Word(_words.First());
 
         private string[] SplitByWords(string message)
         {
@@ -41,6 +45,11 @@ namespace Morgobot.Brain.Grammar
             }
 
             return message.Split(' ').Where(s => !string.IsNullOrWhiteSpace(s)).ToArray();
+        }
+
+        public override string ToString()
+        {
+            return _originalMessage;
         }
     }
 }

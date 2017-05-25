@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using System.Reflection.Metadata;
+using Morgobot.Brain.Grammar;
 
 namespace Morgobot.Brain.Movements
 {
@@ -9,30 +11,30 @@ namespace Morgobot.Brain.Movements
         private Room _currentRoom=null;
         private int _beersFound = 0;
 
-        public string Analyse(string message)
+        public string Analyse(Phrase phrase)
         {
             if(_currentRoom == null)
             {
                 CreateHome();
             }
 
-            if(message.Contains("где") && message.Contains("ты"))
+            if(phrase.HasWord("где") && phrase.HasWord("ты"))
             {
                 return _currentRoom.Description;
             }
 
-            if (_currentRoom.TryToFindBeer(message))
+            if (_currentRoom.TryToFindBeer(phrase.ToString()))
             {
                 _beersFound++;
                 return $"{_currentRoom.BeerFindMessage} Ура! Я нашел {_beersFound} из 7 пив!";
             }
 
-            if (!_commands.Any(message.StartsWith))
+            if (_commands.All(c => c != phrase.FirstWord.ToString()))
             {
                 return null;
             }
 
-            var direction = ConvertDirectionToEnum(message);
+            var direction = ConvertDirectionToEnum(phrase.FirstWord.ToString());
             if(_currentRoom.CanMove(direction))
             {
                 _currentRoom = _currentRoom.Doors[direction];

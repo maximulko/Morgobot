@@ -1,7 +1,9 @@
-﻿namespace Morgobot.Brain
+﻿using Morgobot.Brain.Grammar;
+
+namespace Morgobot.Brain
 {
     interface IThought
     {
-        string Analyse(string message);
+        string Analyse(Phrase phrase);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Morgobot.Brain;
+using Morgobot.Brain.Grammar;
 
 namespace Tests
 {
@@ -17,13 +18,13 @@ namespace Tests
         [TestMethod]
         public void HuefyTest()
         {
-            Assert.AreEqual("Хуёжик!", _huefication.Analyse("Ножик"));
-            Assert.AreEqual("Хуыква!", _huefication.Analyse("Тыква"));
-            Assert.AreEqual("Хуебо!", _huefication.Analyse("Небо"));
-            Assert.AreEqual("Хуяря!", _huefication.Analyse("Харя"));
-            Assert.AreEqual("Хуяль!", _huefication.Analyse("Рояль"));
-            Assert.AreEqual("Хуива!", _huefication.Analyse("Иди выпей пива"));
-            Assert.AreEqual("Хуя!", _huefication.Analyse("Аааааааааааааа"));
+            Assert.AreEqual("Хуёжик!", _huefication.Analyse(new Phrase("Ножик")));
+            Assert.AreEqual("Хуыква!", _huefication.Analyse(new Phrase("Тыква")));
+            Assert.AreEqual("Хуебо!", _huefication.Analyse(new Phrase("Небо")));
+            Assert.AreEqual("Хуяря!", _huefication.Analyse(new Phrase("Харя")));
+            Assert.AreEqual("Хуяль!", _huefication.Analyse(new Phrase("Рояль")));
+            Assert.AreEqual("Хуива!", _huefication.Analyse(new Phrase("Иди выпей пива")));
+            Assert.AreEqual("Хуя!", _huefication.Analyse(new Phrase("Аааааааааааааа")));
         }
     }
 }

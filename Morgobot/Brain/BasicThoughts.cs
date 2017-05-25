@@ -4,11 +4,9 @@ namespace Morgobot.Brain
 {
     public class BasicThoughts : IThought
     {
-        public string Analyse(string message)
+        public string Analyse(Phrase phrase)
         {
-            var phrase = new Phrase(message);
-
-            if (message == "start")
+            if (phrase.ToString() == "start")
             {
                 return "Вечер в хату, часик в радость!";
             }

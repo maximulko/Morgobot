@@ -19,9 +19,9 @@ namespace Morgobot.Brain
             {'е', 'е'},
         };
 
-        public string Analyse(string message)
+        public string Analyse(Phrase phrase)
         {
-            return HuefyPhrase(message);
+            return HuefyPhrase(phrase);
         }
 
         private string HuefyWord(Word word)
@@ -44,9 +44,8 @@ namespace Morgobot.Brain
             return firstPart + secondPart;
         }
 
-        private string HuefyPhrase(string message)
+        private string HuefyPhrase(Phrase phrase)
         {
-            var phrase = new Phrase(message);
             var huefied = HuefyWord(phrase.LastWord);
 
             return huefied == null ? null : huefied + "!";

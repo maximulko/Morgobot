@@ -1,4 +1,5 @@
-﻿using Morgobot.Brain.Movements;
+﻿using Morgobot.Brain.Grammar;
+using Morgobot.Brain.Movements;
 
 namespace Morgobot.Brain
 {
@@ -34,9 +35,11 @@ namespace Morgobot.Brain
                 message = message.Substring(1, message.Length - 1);
             }
 
-            return _movementThoughts.Analyse(message)
-                ?? _basicThoughts.Analyse(message)
-                ?? _huefication.Analyse(message)
+            var phrase = new Phrase(message);
+
+            return _movementThoughts.Analyse(phrase)
+                ?? _basicThoughts.Analyse(phrase)
+                ?? _huefication.Analyse(phrase)
                 ?? "Иди нахуй!";
         }
     }
