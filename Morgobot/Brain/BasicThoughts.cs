@@ -8,6 +8,11 @@ namespace Morgobot.Brain
         {
             var phrase = new Phrase(message);
 
+            if (message == "start")
+            {
+                return "Вечер в хату, часик в радость!";
+            }
+
             if (phrase.HasWord("гусь"))
             {
                 return "Сам ты гусь";
