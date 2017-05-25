@@ -18,7 +18,7 @@ namespace Morgobot.Brain.Grammar
 
         public bool HasWord(string word)
         {
-            return _words.Any(w => w == word);
+            return HasAnyWord(word);
         }
 
         public bool HasAnyWord(params string[] words)
