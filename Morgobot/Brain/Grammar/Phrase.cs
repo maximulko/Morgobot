@@ -4,7 +4,7 @@ namespace Morgobot.Brain.Grammar
 {
     public class Phrase
     {
-        private readonly char[] _punctuationMarks = { ',', '.', '!', '?', ';' };
+        private readonly char[] _punctuationMarks = { ',', '.', '!', '?', ';', '/', ':' };
 
         private readonly string[] _words;
 

@@ -33,5 +33,12 @@ namespace Tests
             Assert.AreEqual(false, _phrase.HasAnyWord("седьмое"));
             Assert.AreEqual(true, _phrase.HasAnyWord("седьмое", "четвертое"));
         }
+
+        [TestMethod]
+        public void ChatInvitationTest()
+        {
+            var phrase = new Phrase("https://t.me/joinchat/AAAAAEN6lWHMXNbNfeE1Sw");
+            var lastWord = phrase.LastWord;
+        }
     }
 }
