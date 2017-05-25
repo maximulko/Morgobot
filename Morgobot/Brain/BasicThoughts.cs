@@ -53,11 +53,7 @@ namespace Morgobot.Brain
 
             if (phrase.HasAnyWord("пиво", "бухать", "водку") && !phrase.HasWord("не"))
             {
-                if (phrase.HasWord("пойдем"))
-                {
-                    return "Пойдем!";
-                }
-                if (phrase.HasWord("пошли"))
+                if (phrase.HasAnyWord("пойдем", "пошли", "идем"))
                 {
                     return "Пошли!";
                 }
