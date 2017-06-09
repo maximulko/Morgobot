@@ -29,6 +29,11 @@ namespace Morgobot.Brain.Movements
                 return $"{_currentRoom.BeerFindMessage} Ура! Я нашел {_beersFound} из 7 пив!";
             }
 
+            if (phrase.IsEmpty())
+            {
+                return null;
+            }
+
             if (_commands.All(c => c != phrase.FirstWord.ToString()))
             {
                 return null;

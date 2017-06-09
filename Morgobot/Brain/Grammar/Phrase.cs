@@ -51,5 +51,10 @@ namespace Morgobot.Brain.Grammar
         {
             return _originalMessage;
         }
+
+        public bool IsEmpty()
+        {
+            return _words.Length == 0;
+        }
     }
 }

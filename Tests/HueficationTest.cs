@@ -26,5 +26,11 @@ namespace Tests
             Assert.AreEqual("Хуива!", _huefication.Analyse(new Phrase("Иди выпей пива")));
             Assert.AreEqual("Хуя!", _huefication.Analyse(new Phrase("Аааааааааааааа")));
         }
+
+        [TestMethod]
+        public void EmptyPhraseTest()
+        {
+            Assert.AreEqual(null, _huefication.Analyse(new Phrase("!!!!!")));
+        }
     }
 }

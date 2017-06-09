@@ -36,5 +36,11 @@ namespace Tests
             Assert.AreEqual("Не стОит.", _movementThoughts.Analyse(new Phrase("вперед")));
             Assert.AreEqual("На ветке дерева висит на веревке еще одна бутылка. Как она туда попала? Подтягиваю её шваброй. Ура! Я нашел 7 из 7 пив!", _movementThoughts.Analyse(new Phrase("посмотри в окно")));
         }
+
+        [TestMethod]
+        public void EmptyPhraseTest()
+        {
+            Assert.AreEqual(null, _movementThoughts.Analyse(new Phrase("!!!!!")));
+        }
     }
 }

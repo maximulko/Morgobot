@@ -72,5 +72,11 @@ namespace Tests
             Assert.AreEqual("Пизда!", _basicThoughts.Analyse(new Phrase("ты дурак, да?")));
             Assert.AreEqual("Пидора ответ!", _basicThoughts.Analyse(new Phrase("никак нет!")));
         }
+
+        [TestMethod]
+        public void EmptyPhraseTest()
+        {
+            Assert.AreEqual(null, _basicThoughts.Analyse(new Phrase("!!!!!")));
+        }
     }
 }

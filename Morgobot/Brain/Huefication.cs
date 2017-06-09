@@ -21,6 +21,11 @@ namespace Morgobot.Brain
 
         public string Analyse(Phrase phrase)
         {
+            if (phrase.IsEmpty())
+            {
+                return null;
+            }
+
             return HuefyPhrase(phrase);
         }
 
