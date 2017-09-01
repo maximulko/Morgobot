@@ -1,5 +1,8 @@
-﻿using Morgobot.Brain.Grammar;
+﻿using System.Runtime.InteropServices;
+using Morgobot.Brain.Grammar;
 using Morgobot.Brain.Movements;
+using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
 
 namespace Morgobot.Brain
 {
@@ -8,16 +11,25 @@ namespace Morgobot.Brain
         private readonly BasicThoughts _basicThoughts;
         private readonly MovementThoughts _movementThoughts;
         private readonly Huefication _huefication;
+        private readonly ServiceMessageAnalysis _serviceMessageAnalysis;
 
-        public Brain(BasicThoughts basicThoughts, MovementThoughts movementThoughts, Huefication huefication)
+        public Brain(BasicThoughts basicThoughts, MovementThoughts movementThoughts, Huefication huefication, ServiceMessageAnalysis serviceMessageAnalysis)
         {
             _basicThoughts = basicThoughts;
             _movementThoughts = movementThoughts;
             _huefication = huefication;
+            _serviceMessageAnalysis = serviceMessageAnalysis;
         }
 
-        public string Analyse(string message, int fromId)
+        public string Analyse(Update update)
         {
+            if (update.Message.Type == MessageType.ServiceMessage)
+            {
+                return _serviceMessageAnalysis.Analyse(update);
+            }
+
+            var message = update.Message.Text;
+
             if (message == null)
             {
                 return null;
