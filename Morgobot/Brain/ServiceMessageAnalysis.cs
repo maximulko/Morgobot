@@ -14,7 +14,7 @@ namespace Morgobot.Brain
                 }
                 else
                 {
-                    return $"Добро пожаловать, {update.Message.NewChatMember.FirstName}! Веди себя хорошо и не матюкайся!";
+                    return "Это что на новый хуй?";
                 }
             }
 
