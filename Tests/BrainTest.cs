@@ -12,6 +12,7 @@ namespace Tests
         private Mock<BasicThoughts> _basicThoughtsMock;
         private Mock<MovementThoughts> _movementThoughtsMock;
         private Mock<Huefication> _hueficationMock;
+        private Mock<ServiceMessageAnalysis> _serviceMessageAnalysis;
 
         [TestInitialize]
         public void Init()
@@ -22,8 +23,9 @@ namespace Tests
 
             _movementThoughtsMock = new Mock<MovementThoughts>();
             _hueficationMock = new Mock<Huefication>();
+            _serviceMessageAnalysis = new Mock<ServiceMessageAnalysis>();
 
-            _brain = new Brain(_basicThoughtsMock.Object, _movementThoughtsMock.Object, _hueficationMock.Object);
+            _brain = new Brain(_basicThoughtsMock.Object, _movementThoughtsMock.Object, _hueficationMock.Object, _serviceMessageAnalysis.Object);
         }
 
         [TestMethod]
