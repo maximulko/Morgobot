@@ -14,13 +14,13 @@ namespace Morgobot.Brain
                 }
                 else
                 {
-                    return "Это что на новый хуй?";
+                    return "Это что за новый хуй?";
                 }
             }
 
             if (update.Message.LeftChatMember != null)
             {
-                return $"Прощай, {update.Message.LeftChatMember.FirstName}. Я буду грустить(((";
+                return "Сука, вернись!";
             }
 
             if (update.Message.NewChatPhoto != null)
