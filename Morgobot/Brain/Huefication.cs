@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Morgobot.Brain.Grammar;
+using Dagon.Grammar;
 
 namespace Morgobot.Brain
 {

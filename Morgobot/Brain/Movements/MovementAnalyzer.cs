@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using Morgobot.Brain.Grammar;
+﻿using Dagon.Grammar;
+using System.Linq;
 
 namespace Morgobot.Brain.Movements
 {

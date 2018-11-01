@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Morgobot.Brain.Grammar
+namespace Dagon.Grammar
 {
     public class GrammarException : Exception
     {

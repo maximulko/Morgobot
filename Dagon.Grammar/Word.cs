@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Morgobot.Brain.Grammar
+namespace Dagon.Grammar
 {
     public class Word
     {

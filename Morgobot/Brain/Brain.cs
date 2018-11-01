@@ -1,4 +1,4 @@
-﻿using Morgobot.Brain.Grammar;
+﻿using Dagon.Grammar;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,4 +1,4 @@
-﻿using Morgobot.Brain.Grammar;
+﻿using Dagon.Grammar;
 
 namespace Morgobot.Brain
 {

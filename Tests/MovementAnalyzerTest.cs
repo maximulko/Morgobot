@@ -1,5 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Morgobot.Brain.Grammar;
+﻿using Dagon.Grammar;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Morgobot.Brain.Movements;
 
 namespace Tests
