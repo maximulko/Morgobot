@@ -35,6 +35,7 @@ namespace Morgobot
                 .AddLogging(opt =>
                 {
                     opt.AddConsole();
+                    opt.AddLog4Net();
                 })
                 .BuildServiceProvider();
 
