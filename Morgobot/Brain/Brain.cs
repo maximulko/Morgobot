@@ -26,7 +26,7 @@ namespace Morgobot.Brain
 
         public string Analyse(Update update)
         {
-            if (update.Message.Type == MessageType.ServiceMessage)
+            if (update.Message.Type != MessageType.Text)
             {
                 return _serviceMessageAnalysis.Analyse(update);
             }

@@ -1,4 +1,5 @@
 ﻿using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
 
 namespace Morgobot.Brain
 {
@@ -6,29 +7,27 @@ namespace Morgobot.Brain
     {
         public string Analyse(Update update)
         {
-            if (update.Message.NewChatMember != null)
+            if (update.Message.Type ==  MessageType.ChatMembersAdded)
             {
-                if (update.Message.NewChatMember.Id == 332048837)
-                {
-                    return "Вечер в хату, часик в радость!";
-                }
-                else
-                {
-                    return "Это что за новый хуй?";
-                }
+                return "Это что за новый хуй?";
             }
 
-            if (update.Message.LeftChatMember != null)
+            if (update.Message.Type == MessageType.ChatMemberLeft)
             {
                 return "Сука, вернись!";
             }
 
-            if (update.Message.NewChatPhoto != null)
+            if (update.Message.Type == MessageType.Photo)
             {
                 return "Классная фотка!";
             }
 
-            if (update.Message.DeleteChatPhoto)
+            if (update.Message.Type == MessageType.Sticker)
+            {
+                return "Классный стикер!";
+            }
+
+            if (update.Message.Type == MessageType.ChatPhotoDeleted)
             {
                 return "Куда дели фотку!!!!";
             }
