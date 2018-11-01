@@ -34,6 +34,7 @@ namespace Morgobot
                     {
                         if(update.Message == null)
                         {
+                            Console.WriteLine("Incoming null");
                             continue;
                         }
 
