@@ -2,6 +2,7 @@
 using Morgobot.Brain;
 using Moq;
 using Morgobot.Brain.Movements;
+using Telegram.Bot.Types;
 
 namespace Tests
 {
@@ -18,9 +19,6 @@ namespace Tests
         public void Init()
         {
             _basicThoughtsMock = new Mock<BasicThoughts>();
-            //_basicThoughtsMock.Setup(bt => bt.Analyse(It.IsAny<Phrase>())).Returns("Пожалуйста");
-
-
             _movementThoughtsMock = new Mock<MovementThoughts>();
             _hueficationMock = new Mock<Huefication>();
             _serviceMessageAnalysis = new Mock<ServiceMessageAnalysis>();
@@ -29,10 +27,19 @@ namespace Tests
         }
 
         [TestMethod]
-        public void BasicThoughtsTest()
+        public void YoTest()
         {
-            //_brain.Analyse("спасибо", 0);
-            //_basicThoughtsMock.Verify(bt=>bt.Analyse(It.IsAny<Phrase>()));
+            /*_brain.Analyse(Update.FromString(
+                "{ " +
+                    "'Message' : { " +
+                        "'Test': 'вперёд', " +
+                        "'message_id':'123', " +
+                        "'date':'2018-11-01', " +
+                        "'MessageType': 'TextMessage' " +
+                    "}," +
+                    "'Type': 'MessageUpdate'" +
+                "}"));*/
+            //_movementThoughtsMock.Verify(x => x.Analyse());
         }
     }
 }

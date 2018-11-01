@@ -42,6 +42,8 @@ namespace Morgobot.Brain
                 message = message.Substring(1, message.Length - 1);
             }
 
+            message = message.Replace('ё', 'е');
+
             var phrase = new Phrase(message);
 
             return _movementThoughts.Analyse(phrase)

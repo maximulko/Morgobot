@@ -30,7 +30,7 @@ namespace Tests
             Assert.AreEqual("Лежит, охлаждается. Ура! Я нашел 4 из 7 пив!", _movementThoughts.Analyse(new Phrase("посмотри в ванне")));
             Assert.AreEqual("Я в туалете, не мешай!", _movementThoughts.Analyse(new Phrase("вперед")));
             Assert.AreEqual("Лежит, охлаждается. Ура! Я нашел 5 из 7 пив!", _movementThoughts.Analyse(new Phrase("посмотри в унитазе")));
-            Assert.AreEqual("Я на кухня, тут есть холодильник и комп.", _movementThoughts.Analyse(new Phrase("вперед")));
+            Assert.AreEqual("Я на кухне, тут есть холодильник и комп.", _movementThoughts.Analyse(new Phrase("вперед")));
             Assert.AreEqual("Где ж еще ему быть. Ура! Я нашел 6 из 7 пив!", _movementThoughts.Analyse(new Phrase("посмотри в холодильнике")));
             Assert.AreEqual("Я на балконе, можно покурить.", _movementThoughts.Analyse(new Phrase("вперед")));
             Assert.AreEqual("Не стОит.", _movementThoughts.Analyse(new Phrase("вперед")));
