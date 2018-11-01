@@ -3,7 +3,7 @@ using Morgobot.Brain.Grammar;
 
 namespace Morgobot.Brain
 {
-    public class Huefication : IThought
+    public class Huefication : IAnalyzer
     {
         private readonly Dictionary<char, char> _rules = new Dictionary<char, char>
         {

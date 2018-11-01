@@ -1,10 +1,9 @@
 ﻿using System.Linq;
-using System.Reflection.Metadata;
 using Morgobot.Brain.Grammar;
 
 namespace Morgobot.Brain.Movements
 {
-    public class MovementThoughts : IThought
+    public class MovementAnalyzer : IAnalyzer
     {
         private readonly string[] _commands = { "вперед", "направо", "назад", "налево" };
 

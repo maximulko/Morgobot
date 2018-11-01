@@ -2,7 +2,7 @@
 
 namespace Morgobot.Brain
 {
-    interface IThought
+    interface IAnalyzer
     {
         string Analyse(Phrase phrase);
     }

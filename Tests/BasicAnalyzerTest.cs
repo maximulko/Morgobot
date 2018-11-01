@@ -5,14 +5,14 @@ using Morgobot.Brain.Grammar;
 namespace Tests
 {
     [TestClass]
-    public class BasicThoughtsTest
+    public class BasicAnalyzerTest
     {
-        private BasicThoughts _basicThoughts;
+        private BasicAnalyzer _basicThoughts;
 
         [TestInitialize]
         public void Init()
         {
-            _basicThoughts = new BasicThoughts();
+            _basicThoughts = new BasicAnalyzer();
         }
 
         [TestMethod]

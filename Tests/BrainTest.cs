@@ -10,16 +10,16 @@ namespace Tests
     public class BrainTest
     {
         private Brain _brain;
-        private Mock<BasicThoughts> _basicThoughtsMock;
-        private Mock<MovementThoughts> _movementThoughtsMock;
+        private Mock<BasicAnalyzer> _basicThoughtsMock;
+        private Mock<MovementAnalyzer> _movementThoughtsMock;
         private Mock<Huefication> _hueficationMock;
         private Mock<ServiceMessageAnalysis> _serviceMessageAnalysis;
 
         [TestInitialize]
         public void Init()
         {
-            _basicThoughtsMock = new Mock<BasicThoughts>();
-            _movementThoughtsMock = new Mock<MovementThoughts>();
+            _basicThoughtsMock = new Mock<BasicAnalyzer>();
+            _movementThoughtsMock = new Mock<MovementAnalyzer>();
             _hueficationMock = new Mock<Huefication>();
             _serviceMessageAnalysis = new Mock<ServiceMessageAnalysis>();
 

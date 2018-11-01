@@ -28,8 +28,8 @@ namespace Morgobot
                 .AddSingleton<Brain.Brain>()
                 .AddSingleton<Server>()
                 .AddSingleton<SettingsManager>()
-                .AddSingleton<BasicThoughts>()
-                .AddSingleton<MovementThoughts>()
+                .AddSingleton<BasicAnalyzer>()
+                .AddSingleton<MovementAnalyzer>()
                 .AddSingleton<Huefication>()
                 .AddSingleton<ServiceMessageAnalysis>()
                 .BuildServiceProvider();

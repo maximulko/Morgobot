@@ -2,7 +2,7 @@
 
 namespace Morgobot.Brain
 {
-    public class BasicThoughts : IThought
+    public class BasicAnalyzer : IAnalyzer
     {
         public string Analyse(Phrase phrase)
         {

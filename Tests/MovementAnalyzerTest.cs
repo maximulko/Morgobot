@@ -5,14 +5,14 @@ using Morgobot.Brain.Movements;
 namespace Tests
 {
     [TestClass]
-    public class MovementTest
+    public class MovementAnalyzerTest
     {
-        private MovementThoughts _movementThoughts;
+        private MovementAnalyzer _movementThoughts;
 
         [TestInitialize]
         public void Init()
         {
-            _movementThoughts = new MovementThoughts();
+            _movementThoughts = new MovementAnalyzer();
         }
 
         [TestMethod]
