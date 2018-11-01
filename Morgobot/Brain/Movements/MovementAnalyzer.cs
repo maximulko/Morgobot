@@ -10,6 +10,8 @@ namespace Morgobot.Brain.Movements
         private Room _currentRoom=null;
         private int _beersFound = 0;
 
+        public int Order => 1;
+
         public string Analyse(Phrase phrase)
         {
             if(_currentRoom == null)

@@ -1,6 +1,7 @@
-﻿using System.Runtime.InteropServices;
-using Morgobot.Brain.Grammar;
-using Morgobot.Brain.Movements;
+﻿using Morgobot.Brain.Grammar;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
@@ -8,16 +9,18 @@ namespace Morgobot.Brain
 {
     public class Brain
     {
-        private readonly BasicAnalyzer _basicThoughts;
-        private readonly MovementAnalyzer _movementThoughts;
-        private readonly Huefication _huefication;
+        private readonly List<IAnalyzer> _analyzers;
         private readonly ServiceMessageAnalysis _serviceMessageAnalysis;
 
-        public Brain(BasicAnalyzer basicThoughts, MovementAnalyzer movementThoughts, Huefication huefication, ServiceMessageAnalysis serviceMessageAnalysis)
+        public Brain(IEnumerable<IAnalyzer> analizers, ServiceMessageAnalysis serviceMessageAnalysis)
         {
-            _basicThoughts = basicThoughts;
-            _movementThoughts = movementThoughts;
-            _huefication = huefication;
+            _analyzers = analizers.OrderBy(x=>x.Order).ToList();
+
+            if (!_analyzers.Any())
+            {
+                throw new ArgumentException("No analyzers found");
+            }
+
             _serviceMessageAnalysis = serviceMessageAnalysis;
         }
 
@@ -46,10 +49,17 @@ namespace Morgobot.Brain
 
             var phrase = new Phrase(message);
 
-            return _movementThoughts.Analyse(phrase)
-                ?? _basicThoughts.Analyse(phrase)
-                ?? _huefication.Analyse(phrase)
-                ?? "Иди нахуй!";
+            foreach(var analyzer in _analyzers)
+            {
+                var response = analyzer.Analyse(phrase);
+
+                if(response != null)
+                {
+                    return response;
+                }
+            }
+
+            return "Иди нахуй!";
         }
     }
 }

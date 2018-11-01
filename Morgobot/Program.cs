@@ -2,7 +2,6 @@
 using System;
 using System.Threading.Tasks;
 using Morgobot.Brain;
-using Morgobot.Brain.Grammar;
 using Morgobot.Brain.Movements;
 
 namespace Morgobot
@@ -28,10 +27,10 @@ namespace Morgobot
                 .AddSingleton<Brain.Brain>()
                 .AddSingleton<Server>()
                 .AddSingleton<SettingsManager>()
-                .AddSingleton<BasicAnalyzer>()
-                .AddSingleton<MovementAnalyzer>()
-                .AddSingleton<Huefication>()
                 .AddSingleton<ServiceMessageAnalysis>()
+                .AddSingleton<IAnalyzer,BasicAnalyzer>()
+                .AddSingleton<IAnalyzer, MovementAnalyzer>()
+                .AddSingleton<IAnalyzer, Huefication>()
                 .BuildServiceProvider();
 
             return serviceProvider;

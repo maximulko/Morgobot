@@ -2,7 +2,7 @@
 using Morgobot.Brain;
 using Moq;
 using Morgobot.Brain.Movements;
-using Telegram.Bot.Types;
+using System.Collections.Generic;
 
 namespace Tests
 {
@@ -23,7 +23,7 @@ namespace Tests
             _hueficationMock = new Mock<Huefication>();
             _serviceMessageAnalysis = new Mock<ServiceMessageAnalysis>();
 
-            _brain = new Brain(_basicThoughtsMock.Object, _movementThoughtsMock.Object, _hueficationMock.Object, _serviceMessageAnalysis.Object);
+            _brain = new Brain(new List<IAnalyzer>{ _basicThoughtsMock.Object, _movementThoughtsMock.Object, _hueficationMock.Object }, _serviceMessageAnalysis.Object);
         }
 
         [TestMethod]

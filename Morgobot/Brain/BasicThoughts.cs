@@ -4,6 +4,8 @@ namespace Morgobot.Brain
 {
     public class BasicAnalyzer : IAnalyzer
     {
+        public int Order => 2;
+
         public string Analyse(Phrase phrase)
         {
             if (phrase.ToString() == "start")
