@@ -3,6 +3,7 @@ using System;
 using System.Threading.Tasks;
 using Morgobot.Brain;
 using Morgobot.Brain.Movements;
+using Microsoft.Extensions.Logging;
 
 namespace Morgobot
 {
@@ -28,9 +29,13 @@ namespace Morgobot
                 .AddSingleton<Server>()
                 .AddSingleton<SettingsManager>()
                 .AddSingleton<ServiceMessageAnalysis>()
-                .AddSingleton<IAnalyzer,BasicAnalyzer>()
+                .AddSingleton<IAnalyzer, BasicAnalyzer>()
                 .AddSingleton<IAnalyzer, MovementAnalyzer>()
                 .AddSingleton<IAnalyzer, Huefication>()
+                .AddLogging(opt =>
+                {
+                    opt.AddConsole();
+                })
                 .BuildServiceProvider();
 
             return serviceProvider;

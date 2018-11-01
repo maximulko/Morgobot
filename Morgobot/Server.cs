@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Telegram.Bot;
@@ -9,17 +10,18 @@ namespace Morgobot
     {
         private readonly Brain.Brain _brain;
         private readonly SettingsManager _settingsManager;
+        private readonly ILogger<Server> _logger;
 
-        public Server(Brain.Brain brain, SettingsManager settingsManager)
+        public Server(Brain.Brain brain, SettingsManager settingsManager, ILogger<Server> logger)
         {
             _brain = brain;
             _settingsManager = settingsManager;
+            _logger = logger;
         }
 
         public async Task Run()
         {
-            Console.OutputEncoding = System.Text.Encoding.Unicode;
-            Console.WriteLine("Listening new messages");
+            _logger.LogInformation("Listening new messages");
 
             var bot = new TelegramBotClient(_settingsManager.GetSetting("botToken"));
             var offset = 0;
@@ -34,11 +36,11 @@ namespace Morgobot
                     {
                         if(update.Message == null)
                         {
-                            Console.WriteLine("Incoming null");
+                            _logger.LogWarning("Incoming null message.");
                             continue;
                         }
 
-                        Console.WriteLine($"Incoming message from {update.Message.From.FirstName} {update.Message.From.LastName} ({update.Message.From.Id}): {update.Message.Text}");
+                        _logger.LogWarning($"Incoming message from {update.Message.From.FirstName} {update.Message.From.LastName} ({update.Message.From.Id}): {update.Message.Text}");
 
                         var charId = update.Message.Chat.Id;
                         var reply = _brain.Analyse(update);
@@ -49,7 +51,7 @@ namespace Morgobot
                         }
                         catch(Exception e)
                         {
-                            Console.WriteLine($"Can't sent message: {e.Message}");
+                            _logger.LogError($"Can't sent message: {e.Message}");
                         }
 
                         offset = update.Id + 1;
@@ -57,7 +59,7 @@ namespace Morgobot
                 }
                 else
                 {
-                    //Console.WriteLine("No updates");
+                    //_logger.LogInformation("No updates");
                 }
 
                 await Task.Delay(1000);
