@@ -100,7 +100,7 @@ namespace Morgobot.Brain.Movements
 
             var kuhnya = new Room("Кухня")
             {
-                Description = "Я на кухня, тут есть холодильник и комп.",
+                Description = "Я на кухне, тут есть холодильник и комп.",
                 WordsForBeer = new string[] { "посмотри", "в", "холодильнике" },
                 BeerFindMessage = "Где ж еще ему быть."
             };
