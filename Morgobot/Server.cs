@@ -28,42 +28,56 @@ namespace Morgobot
 
             while (true)
             {
-                var updates = await bot.GetUpdatesAsync(offset);
-
-                if (updates.Any())
+                try
                 {
-                    foreach (var update in updates)
-                    {
-                        if(update.Message == null)
-                        {
-                            _logger.LogWarning("Incoming null message.");
-                            continue;
-                        }
-
-                        _logger.LogWarning($"Incoming message from {update.Message.From.FirstName} {update.Message.From.LastName} ({update.Message.From.Id}): {update.Message.Text}");
-
-                        var charId = update.Message.Chat.Id;
-                        var reply = _brain.Analyse(update);
-
-                        try
-                        {
-                            var message = await bot.SendTextMessageAsync(charId, reply);
-                        }
-                        catch(Exception e)
-                        {
-                            _logger.LogError($"Can't sent message: {e.Message}");
-                        }
-
-                        offset = update.Id + 1;
-                    }
+                    offset = await ProcessUpdates(bot, offset);
                 }
-                else
+                catch(Exception e)
                 {
-                    //_logger.LogInformation("No updates");
+                    _logger.LogError($"Unhandled exception: {e}");
                 }
 
                 await Task.Delay(1000);
             }
+        }
+
+        private async Task<int> ProcessUpdates(TelegramBotClient bot, int offset)
+        {
+            var updates = await bot.GetUpdatesAsync(offset);
+
+            if (updates.Any())
+            {
+                foreach (var update in updates)
+                {
+                    if (update.Message == null)
+                    {
+                        _logger.LogWarning("Incoming null message.");
+                        continue;
+                    }
+
+                    _logger.LogWarning($"Incoming message from {update.Message.From.FirstName} {update.Message.From.LastName} ({update.Message.From.Id}): {update.Message.Text}");
+
+                    var charId = update.Message.Chat.Id;
+                    var reply = _brain.Analyse(update);
+
+                    try
+                    {
+                        var message = await bot.SendTextMessageAsync(charId, reply);
+                    }
+                    catch (Exception e)
+                    {
+                        _logger.LogError($"Can't sent message: {e.Message}");
+                    }
+
+                    offset = update.Id + 1;
+                }
+            }
+            else
+            {
+                //_logger.LogInformation("No updates");
+            }
+
+            return offset;
         }
     }
 }
