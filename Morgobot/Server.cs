@@ -55,7 +55,7 @@ namespace Morgobot
                         continue;
                     }
 
-                    _logger.LogWarning($"Incoming message from {update.Message.From.FirstName} {update.Message.From.LastName} ({update.Message.From.Id}): {update.Message.Text}");
+                    _logger.LogInformation($"Incoming message from {update.Message.From.FirstName} {update.Message.From.LastName} ({update.Message.From.Id}): {update.Message.Text}");
 
                     var charId = update.Message.Chat.Id;
                     var reply = _brain.Analyse(update);
