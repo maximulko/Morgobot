@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Morgobot.Brain.Movements;
 
-namespace Tests
+namespace Tests.Brain
 {
     [TestClass]
     public class MovementAnalyzerTest

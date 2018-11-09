@@ -4,12 +4,12 @@ using Moq;
 using Morgobot.Brain.Movements;
 using System.Collections.Generic;
 
-namespace Tests
+namespace Tests.Brain
 {
     [TestClass]
     public class BrainTest
     {
-        private Brain _brain;
+        private Morgobot.Brain.Brain _brain;
         private Mock<BasicAnalyzer> _basicThoughtsMock;
         private Mock<MovementAnalyzer> _movementThoughtsMock;
         private Mock<Huefication> _hueficationMock;
@@ -23,7 +23,7 @@ namespace Tests
             _hueficationMock = new Mock<Huefication>();
             _serviceMessageAnalysis = new Mock<ServiceMessageAnalysis>();
 
-            _brain = new Brain(new List<IAnalyzer>{ _basicThoughtsMock.Object, _movementThoughtsMock.Object, _hueficationMock.Object }, _serviceMessageAnalysis.Object);
+            _brain = new Morgobot.Brain.Brain(new List<IAnalyzer>{ _basicThoughtsMock.Object, _movementThoughtsMock.Object, _hueficationMock.Object }, _serviceMessageAnalysis.Object);
         }
 
         [TestMethod]
