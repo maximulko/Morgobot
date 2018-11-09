@@ -1,4 +1,5 @@
 ﻿using Dagon.Grammar;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests
@@ -37,6 +38,20 @@ namespace Tests
         public void SubstringTest()
         {
             Assert.AreEqual("ерв", _word.Substring(1,3));
+        }
+
+        [TestMethod]
+        public void HasEnglishLettersTrueTest()
+        {
+            var sut = new Word("Приветa");
+            sut.HasEnglisLetters().Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void HasEnglishLettersFalseTest()
+        {
+            var sut = new Word("Привет");
+            sut.HasEnglisLetters().Should().BeFalse();
         }
     }
 }

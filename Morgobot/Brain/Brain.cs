@@ -49,6 +49,11 @@ namespace Morgobot.Brain
 
             var phrase = new Phrase(message);
 
+            if (phrase.HasEnglisLetters())
+            {
+                return "Holodilnik!";
+            }
+
             foreach(var analyzer in _analyzers)
             {
                 var response = analyzer.Analyse(phrase);

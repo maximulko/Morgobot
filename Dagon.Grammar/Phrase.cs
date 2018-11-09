@@ -6,6 +6,7 @@ namespace Dagon.Grammar
     {
         private readonly char[] _punctuationMarks = { ',', '.', '!', '?', ';', '/', ':' };
 
+        // TODO change type to Word[]
         private readonly string[] _words;
 
         private readonly string _originalMessage;
@@ -19,6 +20,11 @@ namespace Dagon.Grammar
         public bool HasWord(string word)
         {
             return HasAnyWord(word);
+        }
+
+        public bool HasEnglisLetters()
+        {
+            return _words.Any(word => new Word(word).HasEnglisLetters());
         }
 
         public bool HasAnyWord(params string[] words)
