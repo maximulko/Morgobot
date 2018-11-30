@@ -16,13 +16,4 @@
     <ProjectReference Include="..\Dagon.Grammar\Dagon.Grammar.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="appSettings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="log4net.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

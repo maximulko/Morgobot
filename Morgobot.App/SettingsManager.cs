@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 
-namespace Morgobot
+namespace Morgobot.App
 {
     public class SettingsManager
     {
@@ -16,8 +16,7 @@ namespace Morgobot
 
         public string GetSetting(string name)
         {
-            string value;
-            if(_configurationProvider.TryGet("botToken", out value))
+            if (_configurationProvider.TryGet("botToken", out string value))
             {
                 return value;
             }
