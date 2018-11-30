@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Morgobot.Brain;
 using Morgobot.Brain.Movements;
-using Microsoft.Extensions.Logging;
+using System;
+using System.Threading.Tasks;
 
-namespace Morgobot
+namespace Morgobot.App
 {
     class Program
     {
