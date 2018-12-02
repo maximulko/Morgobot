@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace Morgobot.Web
+namespace Morgobot.Web.Controllers
 {
     [Route("[controller]")]
     public class WebhookController : Controller
@@ -20,9 +19,9 @@ namespace Morgobot.Web
             TelegramBotClient client,
             ILogger<WebhookController> logger)
         {
-            _brain = brain ?? throw new System.ArgumentNullException(nameof(brain));
-            _client = client ?? throw new System.ArgumentNullException(nameof(client));
-            _logger = logger ?? throw new System.ArgumentNullException(nameof(logger));
+            _brain = brain ?? throw new ArgumentNullException(nameof(brain));
+            _client = client ?? throw new ArgumentNullException(nameof(client));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         [HttpPost]
