@@ -17,4 +17,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\lib\Morgobot\Morgobot.csproj" />
+  </ItemGroup>
+
 </Project>
