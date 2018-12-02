@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Morgobot\Morgobot.csproj" />
+    <ProjectReference Include="..\..\lib\Morgobot\Morgobot.csproj" />
   </ItemGroup>
 
   <ItemGroup>
