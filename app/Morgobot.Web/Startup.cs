@@ -29,6 +29,7 @@ namespace Morgobot.Web
             services.AddLogging(opt =>
             {
                 opt.AddConsole();
+                opt.AddAzureWebAppDiagnostics();
             });
 
             services
