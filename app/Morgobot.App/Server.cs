@@ -59,7 +59,7 @@ namespace Morgobot.App
 
                     var charId = update.Message.Chat.Id;
                     var reply = _brain.Analyse(update);
-                    var message = await bot.SendTextMessageAsync(charId, reply);                    
+                    var message = await bot.SendTextMessageAsync(charId, reply);              
 
                     offset = update.Id + 1;
                 }
