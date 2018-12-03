@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>552d2d9b-eb38-4f2c-9445-253274082852</UserSecretsId>
+    <ApplicationInsightsResourceId>/subscriptions/14ec4e55-acec-458e-a402-09b4c485673e/resourcegroups/Morgobot-Web/providers/microsoft.insights/components/Morgobot-Web</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/14ec4e55-acec-458e-a402-09b4c485673e/resourcegroups/Morgobot-Web/providers/microsoft.insights/components/Morgobot-Web</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.Extensions.Logging.AzureAppServices" Version="2.1.1" />
@@ -30,6 +33,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\lib\Morgobot\Morgobot.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 
 </Project>
