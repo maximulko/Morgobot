@@ -7,6 +7,7 @@ using Microsoft.Extensions.Options;
 using Morgobot.Brain;
 using Morgobot.Brain.Movements;
 using System;
+using System.Threading.Tasks;
 using Telegram.Bot;
 
 namespace Morgobot.Web
@@ -16,13 +17,21 @@ namespace Morgobot.Web
         private readonly IServiceProvider _serviceProvider;
         private readonly IConfiguration _configuration;
 
-        public Startup(IServiceProvider serviceProvider, IConfiguration configuration)
+        public Startup(IServiceProvider serviceProvider, IConfiguration configuration, ILogger<Startup> logger)
         {
             _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
+            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
 
-            var bot = new TelegramBotClient("332048837:AAGhg7B4skR3r_Q1w1XNbFPUvl6E2KmpUok");
-            bot.SetWebhookAsync("https://morgobotweb.azurewebsites.net/webhook");
-            _configuration = configuration;
+            logger.LogInformation("Setting up web hook..");
+            SetWebhook(_configuration.GetSection("telegram").Get<TelegramOptions>()).GetAwaiter().GetResult();
+            logger.LogInformation("Finished");
+        }
+
+        private async Task SetWebhook(TelegramOptions telegramOptions)
+        {
+            var bot = new TelegramBotClient(telegramOptions.BotToken);
+            await bot.DeleteWebhookAsync();
+            await bot.SetWebhookAsync(telegramOptions.WebHookUrl);
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
