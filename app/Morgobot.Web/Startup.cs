@@ -21,7 +21,7 @@ namespace Morgobot.Web
             _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
 
             var bot = new TelegramBotClient("332048837:AAGhg7B4skR3r_Q1w1XNbFPUvl6E2KmpUok");
-            bot.SetWebhookAsync("https://morgobot-web.azurewebsites.net/webhook");
+            bot.SetWebhookAsync("https://morgobotweb.azurewebsites.net/webhook");
             _configuration = configuration;
         }
 
