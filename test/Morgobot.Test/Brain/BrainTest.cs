@@ -1,45 +1,36 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Morgobot.Brain;
-using Moq;
 using Morgobot.Brain.Movements;
 using System.Collections.Generic;
+using FluentAssertions;
 
 namespace Morgobot.Tests.Brain
 {
     [TestClass]
     public class BrainTest
     {
-        private Morgobot.Brain.Brain _brain;
-        private Mock<BasicAnalyzer> _basicThoughtsMock;
-        private Mock<MovementAnalyzer> _movementThoughtsMock;
-        private Mock<Huefication> _hueficationMock;
-        private Mock<ServiceMessageAnalysis> _serviceMessageAnalysis;
+        private Morgobot.Brain.Brain _sut;
 
         [TestInitialize]
         public void Init()
         {
-            _basicThoughtsMock = new Mock<BasicAnalyzer>();
-            _movementThoughtsMock = new Mock<MovementAnalyzer>();
-            _hueficationMock = new Mock<Huefication>();
-            _serviceMessageAnalysis = new Mock<ServiceMessageAnalysis>();
 
-            _brain = new Morgobot.Brain.Brain(new List<IAnalyzer>{ _basicThoughtsMock.Object, _movementThoughtsMock.Object, _hueficationMock.Object }, _serviceMessageAnalysis.Object);
+            _sut = new Morgobot.Brain.Brain(
+            new List<IAnalyzer>
+            {
+                new BasicAnalyzer(),
+                new GoogleAnalyzer(),
+                new Huefication(),
+                new MovementAnalyzer()
+            },
+            new ServiceMessageAnalysis());
         }
 
         [TestMethod]
-        public void YoTest()
+        public void GoogleTest()
         {
-            /*_brain.Analyse(Update.FromString(
-                "{ " +
-                    "'Message' : { " +
-                        "'Test': 'вперёд', " +
-                        "'message_id':'123', " +
-                        "'date':'2018-11-01', " +
-                        "'MessageType': 'TextMessage' " +
-                    "}," +
-                    "'Type': 'MessageUpdate'" +
-                "}"));*/
-            //_movementThoughtsMock.Verify(x => x.Analyse());
+            var result = _sut.Analyse("Загугли монах");
+            result.Should().Be("https://ru.wikipedia.org/wiki/Монах");
         }
     }
 }

@@ -55,7 +55,8 @@ namespace Morgobot.Web
                 .AddSingleton<ServiceMessageAnalysis>()
                 .AddSingleton<IAnalyzer, BasicAnalyzer>()
                 .AddSingleton<IAnalyzer, MovementAnalyzer>()
-                .AddSingleton<IAnalyzer, Huefication>();
+                .AddSingleton<IAnalyzer, Huefication>()
+                .AddSingleton<IAnalyzer, GoogleAnalyzer>();
 
             services.Configure<TelegramOptions>(_configuration.GetSection("telegram"));
         }

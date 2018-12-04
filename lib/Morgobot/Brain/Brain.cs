@@ -24,7 +24,7 @@ namespace Morgobot.Brain
             _serviceMessageAnalysis = serviceMessageAnalysis;
         }
 
-        public string Analyse(string message, MessageType type)
+        public string Analyse(string message, MessageType type = MessageType.Text)
         {
             if (type != MessageType.Text)
             {
