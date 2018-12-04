@@ -20,7 +20,7 @@ namespace Morgobot.Test.Brain
         public void AnalyzeTest()
         {
             var reply = _sut.Analyse(new Phrase("загугли монах"));
-            reply.Should().Be("Сам загугли!");
+            reply.Should().Be("https://ru.wikipedia.org/wiki/Монах");
         }
     }
 }
