@@ -55,5 +55,12 @@ namespace Tests
             var phrase = new Phrase("загугли дич");
             phrase.IsFirstWordEquals("дич").Should().BeFalse();
         }
+
+        [TestMethod]
+        public void RemoveFirstWordTest()
+        {
+            var phrase = new Phrase("загугли дич");
+            phrase.RemoveFirstWord().ToString().Should().Be("дич");
+        }
     }
 }

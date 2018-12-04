@@ -32,6 +32,21 @@ namespace Dagon.Grammar
             return _words.Any() && _words.First() == word;
         }
 
+        public Phrase RemoveFirstWord()
+        {
+            if (!_words.Any())
+            {
+                return this;
+            }
+
+            if (_words.Count() == 1)
+            {
+                return new Phrase(string.Empty);
+            }
+
+            return new Phrase(string.Join(" ", _words.Skip(1)));
+        }
+
         public bool HasAnyWord(params string[] words)
         {
             foreach (var word in words)
