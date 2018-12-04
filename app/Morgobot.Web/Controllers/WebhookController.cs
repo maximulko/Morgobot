@@ -45,7 +45,7 @@ namespace Morgobot.Web.Controllers
             var reply = _brain.Analyse(update.Message.Text, update.Message.Type);
             var message = await _client.SendTextMessageAsync(chatId, reply);
 
-            return Ok();
+            return NoContent();
         }
     }
 }
