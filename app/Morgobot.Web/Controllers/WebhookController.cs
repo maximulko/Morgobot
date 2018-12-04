@@ -36,7 +36,7 @@ namespace Morgobot.Web.Controllers
             _logger.LogInformation($"Incoming message from {update.Message.From.FirstName} {update.Message.From.LastName} ({update.Message.From.Id}): {update.Message.Text}");
 
             var chatId = update.Message.Chat.Id;
-            var reply = _brain.Analyse(update);
+            var reply = _brain.Analyse(update.Message.Text, update.Message.Type);
             var message = await _client.SendTextMessageAsync(chatId, reply);
 
             return Ok();

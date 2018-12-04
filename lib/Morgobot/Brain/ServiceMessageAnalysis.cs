@@ -1,39 +1,37 @@
-﻿using Telegram.Bot.Types;
-using Telegram.Bot.Types.Enums;
+﻿using Telegram.Bot.Types.Enums;
 
 namespace Morgobot.Brain
 {
     public class ServiceMessageAnalysis
     {
-        public string Analyse(Update update)
+        public string Analyse(string message, MessageType type)
         {
-            if (update.Message.Type ==  MessageType.ChatMembersAdded)
+            if (type ==  MessageType.ChatMembersAdded)
             {
                 return "Это что за новый хуй?";
             }
 
-            if (update.Message.Type == MessageType.ChatMemberLeft)
+            if (type == MessageType.ChatMemberLeft)
             {
                 return "Сука, вернись!";
             }
 
-            if (update.Message.Type == MessageType.Photo)
+            if (type == MessageType.Photo)
             {
                 return "Классная фотка!";
             }
 
-            if (update.Message.Type == MessageType.Sticker)
+            if (type == MessageType.Sticker)
             {
                 return "Классный стикер!";
             }
 
-            if (update.Message.Type == MessageType.ChatPhotoDeleted)
+            if (type == MessageType.ChatPhotoDeleted)
             {
                 return "Куда дели фотку!!!!";
             }
 
-            if (update.Message.ChannelChatCreated || update.Message.GroupChatCreated ||
-                update.Message.SupergroupChatCreated)
+            if (type == MessageType.ChannelCreated || type == MessageType.GroupCreated || type == MessageType.SupergroupCreated)
             {
                 return "О, новый чатик! Опять от кого-то шифруемся?)))";
             }

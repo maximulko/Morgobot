@@ -24,14 +24,12 @@ namespace Morgobot.Brain
             _serviceMessageAnalysis = serviceMessageAnalysis;
         }
 
-        public string Analyse(Update update)
+        public string Analyse(string message, MessageType type)
         {
-            if (update.Message.Type != MessageType.Text)
+            if (type != MessageType.Text)
             {
-                return _serviceMessageAnalysis.Analyse(update);
+                return _serviceMessageAnalysis.Analyse(message, type);
             }
-
-            var message = update.Message.Text;
 
             if (message == null)
             {
