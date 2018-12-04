@@ -15,8 +15,8 @@ namespace Morgobot.Brain
             if (!phrase.IsFirstWordEquals("загугли"))
                 return null;
 
-            var term = phrase.RemoveFirstWord();
-            var url = $"http://www.google.com/search?num=1&q={term.ToString()}";
+            var term = HttpUtility.UrlEncode(phrase.RemoveFirstWord().ToString());
+            var url = $"http://www.google.com/search?num=1&q={term}";
             string html;
 
             using (var webClient = new WebClient())
