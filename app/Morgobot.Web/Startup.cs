@@ -16,26 +16,18 @@ namespace Morgobot.Web
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly IConfiguration _configuration;
+        private readonly ILogger<Startup> _logger;
 
-        public Startup(IServiceProvider serviceProvider, IConfiguration configuration, ILogger<Startup> logger)
+        public Startup(
+            IServiceProvider serviceProvider, 
+            IConfiguration configuration,
+            ILogger<Startup> logger)
         {
             _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));      
+        }    
 
-            logger.LogInformation("Setting up web hook..");
-            SetWebhook(_configuration.GetSection("telegram").Get<TelegramOptions>()).GetAwaiter().GetResult();
-            logger.LogInformation("Finished");
-        }
-
-        private async Task SetWebhook(TelegramOptions telegramOptions)
-        {
-            var bot = new TelegramBotClient(telegramOptions.BotToken);
-            await bot.DeleteWebhookAsync();
-            await bot.SetWebhookAsync(telegramOptions.WebHookUrl);
-        }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
@@ -61,8 +53,11 @@ namespace Morgobot.Web
             services.Configure<TelegramOptions>(_configuration.GetSection("telegram"));
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(
+            IApplicationBuilder app,
+            IHostingEnvironment env, 
+            ILoggerFactory loggerFactory,
+            IApplicationLifetime applicationLifetime)
         {
             if (env.IsDevelopment())
             {
@@ -72,6 +67,35 @@ namespace Morgobot.Web
             app.UseMvc();
 
             loggerFactory.AddApplicationInsights(app.ApplicationServices, LogLevel.Information);
+
+            applicationLifetime.ApplicationStarted.Register(OnStarted);
+            applicationLifetime.ApplicationStopping.Register(OnShutdown);
+        }
+
+        private void OnStarted()
+        {
+            _logger.LogInformation("Setting up web hook..");
+            SetWebhook(_configuration.GetSection("telegram").Get<TelegramOptions>()).GetAwaiter().GetResult();
+            _logger.LogInformation("Finished");
+        }
+
+        private async Task SetWebhook(TelegramOptions telegramOptions)
+        {
+            var bot = new TelegramBotClient(telegramOptions.BotToken);
+            await bot.SetWebhookAsync(telegramOptions.WebHookUrl);
+        }
+
+        private void OnShutdown()
+        {
+            _logger.LogInformation("Deleting up web hook..");
+            DeleteWebhook(_configuration.GetSection("telegram").Get<TelegramOptions>()).GetAwaiter().GetResult();
+            _logger.LogInformation("Finished");
+        }
+
+        private async Task DeleteWebhook(TelegramOptions telegramOptions)
+        {
+            var bot = new TelegramBotClient(telegramOptions.BotToken);
+            await bot.DeleteWebhookAsync();
         }
     }
 }

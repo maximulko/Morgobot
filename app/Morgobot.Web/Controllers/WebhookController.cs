@@ -27,7 +27,13 @@ namespace Morgobot.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]Update update)
         {
-            if (update == null || update.Message == null)
+            if (update == null)
+            {
+                _logger.LogWarning("Incoming null update.");
+                return BadRequest();
+            }
+
+            if (update.Message == null)
             {
                 _logger.LogWarning("Incoming null message.");
                 return BadRequest();
