@@ -2,7 +2,7 @@
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests
+namespace Morgobot.Test.Grammar
 {
     [TestClass]
     public class WordTest

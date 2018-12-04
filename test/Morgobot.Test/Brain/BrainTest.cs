@@ -4,7 +4,7 @@ using Morgobot.Brain.Movements;
 using System.Collections.Generic;
 using FluentAssertions;
 
-namespace Morgobot.Tests.Brain
+namespace Morgobot.Test.Brain
 {
     [TestClass]
     public class BrainTest

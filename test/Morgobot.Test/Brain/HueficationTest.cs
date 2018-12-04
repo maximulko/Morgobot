@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Morgobot.Brain;
 
-namespace Morgobot.Tests.Brain
+namespace Morgobot.Test.Brain
 {
     [TestClass]
     public class HueficationTest
