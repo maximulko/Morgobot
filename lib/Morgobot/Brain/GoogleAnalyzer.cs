@@ -47,7 +47,7 @@ namespace Morgobot.Brain
             requiredUrl = HttpUtility.UrlDecode(requiredUrl);
             requiredUrl = HttpUtility.UrlDecode(requiredUrl);
 
-            return requiredUrl;
+            return requiredUrl.StartsWith("/search") ? "Это секретная информация!" : requiredUrl;
         }
     }
 }
