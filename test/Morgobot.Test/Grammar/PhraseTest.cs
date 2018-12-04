@@ -1,4 +1,5 @@
 ﻿using Dagon.Grammar;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests
@@ -39,6 +40,20 @@ namespace Tests
         {
             var phrase = new Phrase("https://t.me/joinchat/AAAAAEN6lWHMXNbNfeE1Sw");
             var lastWord = phrase.LastWord;
+        }
+
+        [TestMethod]
+        public void IsFirstWordEqualsTrueTest()
+        {
+            var phrase = new Phrase("загугли дич");
+            phrase.IsFirstWordEquals("загугли").Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void IsFirstWordEqualsFalseTest()
+        {
+            var phrase = new Phrase("загугли дич");
+            phrase.IsFirstWordEquals("дич").Should().BeFalse();
         }
     }
 }

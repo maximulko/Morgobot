@@ -5,7 +5,7 @@ namespace Morgobot.Brain
 {
     public class Huefication : IAnalyzer
     {
-        public int Order => 3;
+        public int Order => 999;
 
         private readonly Dictionary<char, char> _rules = new Dictionary<char, char>
         {

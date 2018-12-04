@@ -4,7 +4,7 @@ using Moq;
 using Morgobot.Brain.Movements;
 using System.Collections.Generic;
 
-namespace Tests.Brain
+namespace Morgobot.Tests.Brain
 {
     [TestClass]
     public class BrainTest

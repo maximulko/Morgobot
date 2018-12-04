@@ -27,6 +27,11 @@ namespace Dagon.Grammar
             return _words.Any(word => new Word(word).HasEnglisLetters());
         }
 
+        public bool IsFirstWordEquals(string word)
+        {
+            return _words.Any() && _words.First() == word;
+        }
+
         public bool HasAnyWord(params string[] words)
         {
             foreach (var word in words)
