@@ -69,7 +69,6 @@ namespace Morgobot.Web
             loggerFactory.AddApplicationInsights(app.ApplicationServices, LogLevel.Information);
 
             applicationLifetime.ApplicationStarted.Register(OnStarted);
-            applicationLifetime.ApplicationStopping.Register(OnShutdown);
         }
 
         private void OnStarted()
@@ -83,19 +82,6 @@ namespace Morgobot.Web
         {
             var bot = new TelegramBotClient(telegramOptions.BotToken);
             await bot.SetWebhookAsync(telegramOptions.WebHookUrl);
-        }
-
-        private void OnShutdown()
-        {
-            _logger.LogInformation("Deleting up web hook..");
-            DeleteWebhook(_configuration.GetSection("telegram").Get<TelegramOptions>()).GetAwaiter().GetResult();
-            _logger.LogInformation("Finished");
-        }
-
-        private async Task DeleteWebhook(TelegramOptions telegramOptions)
-        {
-            var bot = new TelegramBotClient(telegramOptions.BotToken);
-            await bot.DeleteWebhookAsync();
         }
     }
 }
