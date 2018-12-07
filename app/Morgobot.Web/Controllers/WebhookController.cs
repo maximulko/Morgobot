@@ -35,8 +35,10 @@ namespace Morgobot.Web.Controllers
 
             if (update.Message == null)
             {
+                // It looks like this is some regular case for telegram.
+                // So Ok should be returned
                 _logger.LogWarning("Incoming null message.");
-                return BadRequest();
+                return Ok();
             }
 
             _logger.LogInformation($"Incoming message from {update.Message.From.FirstName} {update.Message.From.LastName} ({update.Message.From.Id}): {update.Message.Text}");
