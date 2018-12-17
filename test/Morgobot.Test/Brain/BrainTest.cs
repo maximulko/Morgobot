@@ -3,6 +3,9 @@ using Morgobot.Brain;
 using Morgobot.Brain.Movements;
 using System.Collections.Generic;
 using FluentAssertions;
+using Morgobot.Web.Brain;
+using Morgobot.Web.Infrastructure;
+using Morgobot.Test.Mocks;
 
 namespace Morgobot.Test.Brain
 {
@@ -14,23 +17,39 @@ namespace Morgobot.Test.Brain
         [TestInitialize]
         public void Init()
         {
+            var contextAnalysers = new List<IContextAnalyzer>
+            {
+                new SecretSantaAnalyzer()
+            };
 
-            _sut = new Morgobot.Brain.Brain(
-            new List<IAnalyzer>
+            var  analizers = new List<IAnalyzer>
             {
                 new BasicAnalyzer(),
                 new GoogleAnalyzer(),
                 new Huefication(),
-                new MovementAnalyzer()
-            },
-            new ServiceMessageAnalysis());
+                new MovementAnalyzer(),
+                new ContextSwitchAnalyzer(contextAnalysers, new PerChatCache(new MemoryCacheMock()))
+            };
+
+            _sut = new Morgobot.Brain.Brain(
+                analizers,
+                new ServiceMessageAnalysis()
+            );
+        }
+
+        [TestMethod]
+        public void ContextSwitchTest()
+        {
+            _sut.Analyse("секретный санта", 0);
+            var result = _sut.Analyse("скажи контекст", 0);
+            result.Should().Be("SecretSanta");
         }
 
         [TestMethod]
         public void GoogleTest()
         {
             var result = _sut.Analyse("Загугли монах", 0);
-            result.Should().Be("https://ru.wikipedia.org/wiki/Монах");
+            result.Should().Be("https://uk.wikipedia.org/wiki/Чернець");
         }
     }
 }

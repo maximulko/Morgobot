@@ -18,21 +18,31 @@ namespace Morgobot.Test.Grammar
         [TestMethod]
         public void HasWordTest()
         {
-            Assert.AreEqual(true, _phrase.HasWord("первое"));
-            Assert.AreEqual(true, _phrase.HasWord("второе"));
-            Assert.AreEqual(true, _phrase.HasWord("третье"));
-            Assert.AreEqual(true, _phrase.HasWord("четвертое"));
-            Assert.AreEqual(true, _phrase.HasWord("пятое"));
-            Assert.AreEqual(true, _phrase.HasWord("шестое"));
-            Assert.AreEqual(false, _phrase.HasWord("седьмое"));
+            _phrase.HasWord("первое").Should().BeTrue();
+            _phrase.HasWord("второе").Should().BeTrue();
+            _phrase.HasWord("третье").Should().BeTrue();
+            _phrase.HasWord("четвертое").Should().BeTrue();
+            _phrase.HasWord("пятое").Should().BeTrue();
+            _phrase.HasWord("шестое").Should().BeTrue();
+            _phrase.HasWord("седьмое").Should().BeFalse();
         }
 
         [TestMethod]
         public void HasAnyWordTest()
         {
-            Assert.AreEqual(true, _phrase.HasAnyWord("первое", "второе"));
-            Assert.AreEqual(false, _phrase.HasAnyWord("седьмое"));
-            Assert.AreEqual(true, _phrase.HasAnyWord("седьмое", "четвертое"));
+            _phrase.HasAnyWord("первое", "второе").Should().BeTrue();
+            _phrase.HasAnyWord("седьмое").Should().BeFalse();
+            _phrase.HasAnyWord("седьмое", "четвертое").Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void HasAllWordTest()
+        {
+            _phrase.HasAllWords("первое", "второе").Should().BeTrue();
+            _phrase.HasAllWords("седьмое").Should().BeFalse();
+            _phrase.HasAllWords("седьмое", "четвертое").Should().BeFalse();
+
+            new Phrase("скажи контекст").HasAllWords("скажи", "контекст").Should().BeTrue();
         }
 
         [TestMethod]

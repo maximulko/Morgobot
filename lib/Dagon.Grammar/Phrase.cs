@@ -60,7 +60,7 @@ namespace Dagon.Grammar
             return false;
         }
 
-        public bool HasAllWord(params string[] words)
+        public bool HasAllWords(params string[] words)
         {
             foreach (var word in words)
             {

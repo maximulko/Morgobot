@@ -23,9 +23,14 @@ namespace Morgobot.Web.Brain
 
         public string Analyse(Phrase phrase, long chatId)
         {
+            if(phrase.HasAllWords("скажи", "контекст"))
+            {
+                return _perChatCache.Get<string>(CurrentContextCacheKey, chatId);
+            }
+
             foreach (var contextAnalyzer in _contextAnalyzers)
             {
-                if (phrase.HasAllWord(contextAnalyzer.ContextSwitchWords))
+                if (phrase.HasAllWords(contextAnalyzer.ContextSwitchWords))
                 {
                     _perChatCache.Set(CurrentContextCacheKey, chatId, contextAnalyzer.ContextName);
                 }
