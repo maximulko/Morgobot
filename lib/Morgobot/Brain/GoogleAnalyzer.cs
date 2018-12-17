@@ -10,7 +10,7 @@ namespace Morgobot.Brain
     {
         public int Order => 3;
 
-        public string Analyse(Phrase phrase)
+        public string Analyse(Phrase phrase, long chatId)
         {
             if (!phrase.IsFirstWordEquals("загугли"))
                 return null;

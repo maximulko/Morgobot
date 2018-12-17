@@ -11,7 +11,7 @@ namespace Morgobot.Web.Controllers
     [Route("[controller]")]
     public class WebhookController : Controller
     {
-        private readonly Brain.Brain _brain;
+        private readonly Morgobot.Brain.Brain _brain;
         private readonly TelegramBotClient _client;
         private readonly ILogger<WebhookController> _logger;
         private readonly PerChatCache _perChatCache;
@@ -19,7 +19,7 @@ namespace Morgobot.Web.Controllers
         private const string CurrentContextCacheKey = "CurrentContext";
 
         public WebhookController(
-            Brain.Brain brain, 
+            Morgobot.Brain.Brain brain, 
             TelegramBotClient client,
             ILogger<WebhookController> logger,
             PerChatCache perChatCache)
@@ -51,7 +51,7 @@ namespace Morgobot.Web.Controllers
 
             var chatId = update.Message.Chat.Id;
             var context = _perChatCache.Get<string>(CurrentContextCacheKey, chatId);
-            var reply = _brain.Analyse(update.Message.Text, update.Message.Type, context);
+            var reply = _brain.Analyse(update.Message.Text, chatId, update.Message.Type, context);
             var message = await _client.SendTextMessageAsync(chatId, reply);
 
             return NoContent();

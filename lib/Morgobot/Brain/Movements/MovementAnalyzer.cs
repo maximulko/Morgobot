@@ -12,7 +12,7 @@ namespace Morgobot.Brain.Movements
 
         public int Order => 1;
 
-        public string Analyse(Phrase phrase)
+        public string Analyse(Phrase phrase, long chatId)
         {
             if(_currentRoom == null)
             {

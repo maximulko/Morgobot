@@ -23,7 +23,7 @@ namespace Morgobot.Brain
             _serviceMessageAnalysis = serviceMessageAnalysis;
         }
 
-        public string Analyse(string message, MessageType type = MessageType.Text, string context = null)
+        public string Analyse(string message, long chatId, MessageType type = MessageType.Text, string context = null)
         {
             if (type != MessageType.Text)
             {
@@ -53,7 +53,7 @@ namespace Morgobot.Brain
 
             foreach(var analyzer in _analyzers)
             {
-                var response = analyzer.Analyse(phrase);
+                var response = analyzer.Analyse(phrase, chatId);
 
                 if(response != null)
                 {

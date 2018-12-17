@@ -21,7 +21,7 @@ namespace Morgobot.Brain
             {'е', 'е'},
         };
 
-        public string Analyse(Phrase phrase)
+        public string Analyse(Phrase phrase, long chatId)
         {
             if (phrase.IsEmpty())
             {

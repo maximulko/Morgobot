@@ -29,7 +29,7 @@ namespace Morgobot.Test.Brain
         [TestMethod]
         public void GoogleTest()
         {
-            var result = _sut.Analyse("Загугли монах");
+            var result = _sut.Analyse("Загугли монах", 0);
             result.Should().Be("https://ru.wikipedia.org/wiki/Монах");
         }
     }

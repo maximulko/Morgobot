@@ -8,6 +8,8 @@ namespace Morgobot.Brain
 
         public string ContextName => "SecretSanta";
 
+        public string[] ContextSwitchWords => new string[] { "секретный", "санта" };
+
         public string Analyse(Phrase phrase)
         {
             return "Привети из санты";

@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Morgobot.Brain;
 using Morgobot.Brain.Movements;
+using Morgobot.Web.Brain;
 using Morgobot.Web.Infrastructure;
 using System;
 using System.Threading.Tasks;
@@ -40,8 +41,9 @@ namespace Morgobot.Web
             });
 
             services
-                .AddSingleton<Brain.Brain>()
-                .AddSingleton(factory => {
+                .AddSingleton<Morgobot.Brain.Brain>()
+                .AddSingleton(factory =>
+                {
                     var telegramOptions = factory.GetService<IOptions<TelegramOptions>>();
                     return new TelegramBotClient(telegramOptions.Value.BotToken);
                 })
@@ -50,7 +52,10 @@ namespace Morgobot.Web
                 .AddSingleton<IAnalyzer, BasicAnalyzer>()
                 .AddSingleton<IAnalyzer, MovementAnalyzer>()
                 .AddSingleton<IAnalyzer, Huefication>()
-                .AddSingleton<IAnalyzer, GoogleAnalyzer>();
+                .AddSingleton<IAnalyzer, GoogleAnalyzer>()
+                .AddSingleton<IAnalyzer, ContextSwitchAnalyzer>()
+
+                .AddSingleton<IContextAnalyzer, SecretSantaAnalyzer>();
 
             services.Configure<TelegramOptions>(_configuration.GetSection("telegram"));
         }

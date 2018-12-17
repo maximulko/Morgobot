@@ -2,8 +2,9 @@
 
 namespace Morgobot.Brain
 {
-    interface IContextAnalyzer
+    public interface IContextAnalyzer
     {
+        string[] ContextSwitchWords { get; }
         string ContextName { get; }
         string Analyse(Phrase phrase);
     }

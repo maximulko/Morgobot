@@ -60,6 +60,19 @@ namespace Dagon.Grammar
             return false;
         }
 
+        public bool HasAllWord(params string[] words)
+        {
+            foreach (var word in words)
+            {
+                if (!_words.Any(w => w == word))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         public Word LastWord => new Word(_words.Last());
         public Word FirstWord => new Word(_words.First());
 

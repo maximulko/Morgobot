@@ -6,7 +6,7 @@ namespace Morgobot.Brain
     {
         public int Order => 2;
 
-        public string Analyse(Phrase phrase)
+        public string Analyse(Phrase phrase, long chatId)
         {
             if (phrase.ToString() == "start")
             {

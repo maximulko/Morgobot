@@ -18,19 +18,19 @@ namespace Morgobot.Test.Brain
         [TestMethod]
         public void HuefyTest()
         {
-            Assert.AreEqual("Хуёжик!", _huefication.Analyse(new Phrase("Ножик")));
-            Assert.AreEqual("Хуыква!", _huefication.Analyse(new Phrase("Тыква")));
-            Assert.AreEqual("Хуебо!", _huefication.Analyse(new Phrase("Небо")));
-            Assert.AreEqual("Хуяря!", _huefication.Analyse(new Phrase("Харя")));
-            Assert.AreEqual("Хуяль!", _huefication.Analyse(new Phrase("Рояль")));
-            Assert.AreEqual("Хуива!", _huefication.Analyse(new Phrase("Иди выпей пива")));
-            Assert.AreEqual("Хуя!", _huefication.Analyse(new Phrase("Аааааааааааааа")));
+            Assert.AreEqual("Хуёжик!", _huefication.Analyse(new Phrase("Ножик"), 0));
+            Assert.AreEqual("Хуыква!", _huefication.Analyse(new Phrase("Тыква"), 0));
+            Assert.AreEqual("Хуебо!", _huefication.Analyse(new Phrase("Небо"), 0));
+            Assert.AreEqual("Хуяря!", _huefication.Analyse(new Phrase("Харя"), 0));
+            Assert.AreEqual("Хуяль!", _huefication.Analyse(new Phrase("Рояль"), 0));
+            Assert.AreEqual("Хуива!", _huefication.Analyse(new Phrase("Иди выпей пива"), 0));
+            Assert.AreEqual("Хуя!", _huefication.Analyse(new Phrase("Аааааааааааааа"), 0));
         }
 
         [TestMethod]
         public void EmptyPhraseTest()
         {
-            Assert.AreEqual(null, _huefication.Analyse(new Phrase("!!!!!")));
+            Assert.AreEqual(null, _huefication.Analyse(new Phrase("!!!!!"), 0));
         }
     }
 }
