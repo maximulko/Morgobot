@@ -1,8 +1,9 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
+using Morgobot.Infrastructure;
 
 namespace Morgobot.Web.Infrastructure
 {
-    public class PerChatCache
+    public class PerChatCache : IPerChatCache
     {
         private readonly IMemoryCache _memoryCache;
 

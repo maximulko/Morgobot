@@ -7,6 +7,7 @@ using Morgobot.Web.Brain;
 using Morgobot.Web.Infrastructure;
 using Morgobot.Test.Mocks;
 using Morgobot.Brain.ContextAnalysers;
+using Morgobot.Infrastructure;
 
 namespace Morgobot.Test.Brain
 {
@@ -18,9 +19,11 @@ namespace Morgobot.Test.Brain
         [TestInitialize]
         public void Init()
         {
+            IPerChatCache perChatCache = new PerChatCache(new MemoryCacheMock());
+
             var contextAnalysers = new List<IContextAnalyzer>
             {
-                new SecretSantaAnalyzer()
+                new SecretSantaAnalyzer(perChatCache)
             };
 
             var  analizers = new List<IAnalyzer>
@@ -29,7 +32,7 @@ namespace Morgobot.Test.Brain
                 new GoogleAnalyzer(),
                 new Huefication(),
                 new MovementAnalyzer(),
-                new ContextSwitchAnalyzer(contextAnalysers, new PerChatCache(new MemoryCacheMock()))
+                new ContextSwitchAnalyzer(contextAnalysers, perChatCache)
             };
 
             _sut = new Morgobot.Brain.Brain(

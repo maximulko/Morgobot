@@ -1,9 +1,17 @@
 ﻿using Dagon.Grammar;
+using Morgobot.Infrastructure;
 
 namespace Morgobot.Brain.ContextAnalysers
 {
     public class SecretSantaAnalyzer : IContextAnalyzer
     {
+        private readonly IPerChatCache _perChatCache;
+
+        public SecretSantaAnalyzer(IPerChatCache perChatCache)
+        {
+            _perChatCache = perChatCache ?? throw new System.ArgumentNullException(nameof(perChatCache));
+        }
+
         public int Order => 4;
 
         public string ContextName => "SecretSanta";
