@@ -8,6 +8,7 @@ using Morgobot.Web.Infrastructure;
 using Morgobot.Test.Mocks;
 using Morgobot.Brain.ContextAnalysers;
 using Morgobot.Infrastructure;
+using Telegram.Bot.Types.Enums;
 
 namespace Morgobot.Test.Brain
 {
@@ -45,10 +46,21 @@ namespace Morgobot.Test.Brain
         [TestMethod]
         public void ContextSwitchTest()
         {
-            var r1 = _sut.Analyse("секретный санта", 0);
-            r1.Text.Should().Be("Привет из санты");
-            var result = _sut.Analyse("скажи контекст", 0);
-            result.Text.Should().Be("Нет контекста");
+            var response = _sut.Analyse("секретный санта", 0);
+            response.Text.Should().Be("Скажи кто ты");
+            response.ClenUpCurrentContext.Should().BeFalse();
+
+            response = _sut.Analyse("Антон", 0, MessageType.Text, "SecretSanta");
+            response.Text.Should().Be("Скажи кого ты любишь");
+            response.ClenUpCurrentContext.Should().BeFalse();
+
+            response = _sut.Analyse("Света", 0, MessageType.Text, "SecretSanta");
+            response.Text.Should().Be("Скажи свой вишлист");
+            response.ClenUpCurrentContext.Should().BeFalse();
+
+            response = _sut.Analyse("настолки", 0, MessageType.Text, "SecretSanta");
+            response.Text.Should().Be("Спасибо!");
+            response.ClenUpCurrentContext.Should().BeTrue();
         }
 
         [TestMethod]

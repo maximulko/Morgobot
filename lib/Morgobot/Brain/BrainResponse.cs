@@ -7,10 +7,10 @@
 
         }
 
-        public BrainResponse(string text)
+        public BrainResponse(string text, bool clenUpCurrentContext = false)
         {
             Text = text;
-            ClenUpCurrentContext = false;
+            ClenUpCurrentContext = clenUpCurrentContext;
         }
 
         public string Text { get; set; }

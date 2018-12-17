@@ -23,11 +23,24 @@ namespace Morgobot.Brain.ContextAnalysers
         {
             var stage = _perChatCache.Get<int?>(StageCacheKey, chatId);
 
-            return new BrainResponse
+            switch (stage)
             {
-                Text = "Привет из санты",
-                ClenUpCurrentContext = true
-            };
+                case null:
+                case 0:
+                    _perChatCache.Set<int?>(StageCacheKey, chatId, 1);
+                    return new BrainResponse("Скажи кто ты");
+                case 1:
+                    _perChatCache.Set<int?>(StageCacheKey, chatId, 2);
+                    return new BrainResponse("Скажи кого ты любишь");
+                case 2:
+                    _perChatCache.Set<int?>(StageCacheKey, chatId, 3);
+                    return new BrainResponse("Скажи свой вишлист");
+                case 3:
+                    return new BrainResponse("Спасибо!", true);
+                default:
+                    return null;
+            }
+            
         }
     }
 }
