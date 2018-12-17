@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Morgobot.Brain;
 using Morgobot.Brain.Movements;
+using Morgobot.Web.Infrastructure;
 using System;
 using System.Threading.Tasks;
 using Telegram.Bot;
@@ -45,6 +46,7 @@ namespace Morgobot.Web
                     return new TelegramBotClient(telegramOptions.Value.BotToken);
                 })
                 .AddSingleton<ServiceMessageAnalysis>()
+                .AddSingleton<PerChatCache>()
                 .AddSingleton<IAnalyzer, BasicAnalyzer>()
                 .AddSingleton<IAnalyzer, MovementAnalyzer>()
                 .AddSingleton<IAnalyzer, Huefication>()

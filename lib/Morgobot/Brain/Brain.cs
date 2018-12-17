@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
 namespace Morgobot.Brain
@@ -24,7 +23,7 @@ namespace Morgobot.Brain
             _serviceMessageAnalysis = serviceMessageAnalysis;
         }
 
-        public string Analyse(string message, MessageType type = MessageType.Text)
+        public string Analyse(string message, MessageType type = MessageType.Text, string context = null)
         {
             if (type != MessageType.Text)
             {
