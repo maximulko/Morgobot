@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Morgobot.Brain;
+using Morgobot.Brain.ContextAnalysers;
 using Morgobot.Brain.Movements;
 using Morgobot.Web.Brain;
 using Morgobot.Web.Infrastructure;

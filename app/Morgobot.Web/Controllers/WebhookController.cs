@@ -52,7 +52,13 @@ namespace Morgobot.Web.Controllers
             var chatId = update.Message.Chat.Id;
             var context = _perChatCache.Get<string>(CurrentContextCacheKey, chatId);
             var reply = _brain.Analyse(update.Message.Text, chatId, update.Message.Type, context);
-            var message = await _client.SendTextMessageAsync(chatId, reply);
+
+            if (reply.ClenUpCurrentContext)
+            {
+                _perChatCache.Set<string>(CurrentContextCacheKey, chatId, null);
+            }
+
+            var message = await _client.SendTextMessageAsync(chatId, reply.Text);
 
             return NoContent();
         }

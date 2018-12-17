@@ -1,11 +1,11 @@
 ﻿using Dagon.Grammar;
 
-namespace Morgobot.Brain
+namespace Morgobot.Brain.ContextAnalysers
 {
     public interface IContextAnalyzer
     {
         string[] ContextSwitchWords { get; }
         string ContextName { get; }
-        string Analyse(Phrase phrase);
+        BrainResponse Analyse(Phrase phrase);
     }
 }

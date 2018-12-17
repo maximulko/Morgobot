@@ -6,6 +6,7 @@ using FluentAssertions;
 using Morgobot.Web.Brain;
 using Morgobot.Web.Infrastructure;
 using Morgobot.Test.Mocks;
+using Morgobot.Brain.ContextAnalysers;
 
 namespace Morgobot.Test.Brain
 {
@@ -33,6 +34,7 @@ namespace Morgobot.Test.Brain
 
             _sut = new Morgobot.Brain.Brain(
                 analizers,
+                contextAnalysers,
                 new ServiceMessageAnalysis()
             );
         }
@@ -42,14 +44,14 @@ namespace Morgobot.Test.Brain
         {
             _sut.Analyse("секретный санта", 0);
             var result = _sut.Analyse("скажи контекст", 0);
-            result.Should().Be("SecretSanta");
+            result.Text.Should().Be("SecretSanta");
         }
 
         [TestMethod]
         public void GoogleTest()
         {
             var result = _sut.Analyse("Загугли монах", 0);
-            result.Should().Be("https://uk.wikipedia.org/wiki/Чернець");
+            result.Text.Should().Be("https://uk.wikipedia.org/wiki/Чернець");
         }
     }
 }

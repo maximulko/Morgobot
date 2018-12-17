@@ -1,4 +1,5 @@
 ﻿using Dagon.Grammar;
+using Morgobot.Brain.ContextAnalysers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,13 @@ namespace Morgobot.Brain
     public class Brain
     {
         private readonly List<IAnalyzer> _analyzers;
+        private readonly IEnumerable<IContextAnalyzer> _contextAnalyzers;
         private readonly ServiceMessageAnalysis _serviceMessageAnalysis;
 
-        public Brain(IEnumerable<IAnalyzer> analizers, ServiceMessageAnalysis serviceMessageAnalysis)
+        public Brain(
+            IEnumerable<IAnalyzer> analizers,
+            IEnumerable<IContextAnalyzer> contextAnalyzers,
+            ServiceMessageAnalysis serviceMessageAnalysis)
         {
             _analyzers = analizers.OrderBy(x=>x.Order).ToList();
 
@@ -20,14 +25,16 @@ namespace Morgobot.Brain
                 throw new ArgumentException("No analyzers found");
             }
 
+            _contextAnalyzers = contextAnalyzers ?? throw new ArgumentNullException(nameof(contextAnalyzers));
+
             _serviceMessageAnalysis = serviceMessageAnalysis;
         }
 
-        public string Analyse(string message, long chatId, MessageType type = MessageType.Text, string context = null)
+        public BrainResponse Analyse(string message, long chatId, MessageType type = MessageType.Text, string contextName = null)
         {
             if (type != MessageType.Text)
             {
-                return _serviceMessageAnalysis.Analyse(message, type);
+                return new BrainResponse(_serviceMessageAnalysis.Analyse(message, type));
             }
 
             if (message == null)
@@ -48,7 +55,17 @@ namespace Morgobot.Brain
 
             if (phrase.HasEnglisLetters())
             {
-                return "Holodilnik!";
+                return new BrainResponse("Holodilnik!");
+            }
+
+            if (!string.IsNullOrWhiteSpace(contextName))
+            {
+                var currentContextAnalyser = _contextAnalyzers.FirstOrDefault(x => x.ContextName == contextName);
+
+                if(currentContextAnalyser != null)
+                {
+                    return currentContextAnalyser.Analyse(phrase);
+                }
             }
 
             foreach(var analyzer in _analyzers)
@@ -57,11 +74,11 @@ namespace Morgobot.Brain
 
                 if(response != null)
                 {
-                    return response;
+                    return new BrainResponse(response);
                 }
             }
 
-            return "Иди нахуй!";
+            return new BrainResponse("Иди нахуй!");
         }
     }
 }

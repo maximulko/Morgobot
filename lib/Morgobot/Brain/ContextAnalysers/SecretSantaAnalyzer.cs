@@ -1,6 +1,6 @@
 ﻿using Dagon.Grammar;
 
-namespace Morgobot.Brain
+namespace Morgobot.Brain.ContextAnalysers
 {
     public class SecretSantaAnalyzer : IContextAnalyzer
     {
@@ -10,9 +10,13 @@ namespace Morgobot.Brain
 
         public string[] ContextSwitchWords => new string[] { "секретный", "санта" };
 
-        public string Analyse(Phrase phrase)
+        public BrainResponse Analyse(Phrase phrase)
         {
-            return "Привети из санты";
+            return new BrainResponse
+            {
+                Text = "Привети из санты",
+                ClenUpCurrentContext = true
+            };
         }
     }
 }
