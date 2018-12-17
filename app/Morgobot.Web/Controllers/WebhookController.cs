@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Morgobot.Infrastructure;
 using Morgobot.Web.Infrastructure;
 using System;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace Morgobot.Web.Controllers
         private readonly Morgobot.Brain.Brain _brain;
         private readonly TelegramBotClient _client;
         private readonly ILogger<WebhookController> _logger;
-        private readonly PerChatCache _perChatCache;
+        private readonly IPerChatCache _perChatCache;
 
         private const string CurrentContextCacheKey = "CurrentContext";
 
@@ -22,7 +23,7 @@ namespace Morgobot.Web.Controllers
             Morgobot.Brain.Brain brain, 
             TelegramBotClient client,
             ILogger<WebhookController> logger,
-            PerChatCache perChatCache)
+            IPerChatCache perChatCache)
         {
             _brain = brain ?? throw new ArgumentNullException(nameof(brain));
             _client = client ?? throw new ArgumentNullException(nameof(client));

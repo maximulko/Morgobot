@@ -36,6 +36,7 @@ namespace Morgobot.Brain.ContextAnalysers
                     _perChatCache.Set<int?>(StageCacheKey, chatId, 3);
                     return new BrainResponse("Скажи свой вишлист");
                 case 3:
+                    _perChatCache.Set<int?>(StageCacheKey, chatId, null);
                     return new BrainResponse("Спасибо!", true);
                 default:
                     return null;
