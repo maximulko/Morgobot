@@ -6,6 +6,7 @@ namespace Morgobot.Brain.ContextAnalysers
     public class SecretSantaAnalyzer : IContextAnalyzer
     {
         private readonly IPerChatCache _perChatCache;
+        private const string StageCacheKey = "StageCacheKey";
 
         public SecretSantaAnalyzer(IPerChatCache perChatCache)
         {
@@ -18,8 +19,10 @@ namespace Morgobot.Brain.ContextAnalysers
 
         public string[] ContextSwitchWords => new string[] { "секретный", "санта" };
 
-        public BrainResponse Analyse(Phrase phrase)
+        public BrainResponse Analyse(Phrase phrase, long chatId)
         {
+            var stage = _perChatCache.Get<int?>(StageCacheKey, chatId);
+
             return new BrainResponse
             {
                 Text = "Привет из санты",

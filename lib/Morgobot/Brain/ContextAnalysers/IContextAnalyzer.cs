@@ -6,6 +6,6 @@ namespace Morgobot.Brain.ContextAnalysers
     {
         string[] ContextSwitchWords { get; }
         string ContextName { get; }
-        BrainResponse Analyse(Phrase phrase);
+        BrainResponse Analyse(Phrase phrase, long chatId);
     }
 }

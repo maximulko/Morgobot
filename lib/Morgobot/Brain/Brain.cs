@@ -64,7 +64,7 @@ namespace Morgobot.Brain
 
                 if(currentContextAnalyser != null)
                 {
-                    return currentContextAnalyser.Analyse(phrase);
+                    return currentContextAnalyser.Analyse(phrase, chatId);
                 }
             }
 

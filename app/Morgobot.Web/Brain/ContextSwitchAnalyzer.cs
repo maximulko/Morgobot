@@ -35,7 +35,7 @@ namespace Morgobot.Web.Brain
                 if (phrase.HasAllWords(contextAnalyzer.ContextSwitchWords))
                 {
                     _perChatCache.Set(CurrentContextCacheKey, chatId, contextAnalyzer.ContextName);
-                    var response = contextAnalyzer.Analyse(phrase);
+                    var response = contextAnalyzer.Analyse(phrase, chatId);
 
                     if (response.ClenUpCurrentContext)
                     {

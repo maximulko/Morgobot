@@ -12,14 +12,14 @@ namespace Morgobot.Web.Infrastructure
             _memoryCache = memoryCache ?? throw new System.ArgumentNullException(nameof(memoryCache));
         }
 
-        public void Set<T>(string key, long chatId, T data) where T : class
+        public void Set<T>(string key, long chatId, T data)
         {
             _memoryCache.Set(CreateKey(key, chatId), data);
         }
 
-        public T Get<T>(string key, long chatId) where T: class
+        public T Get<T>(string key, long chatId)
         {
-            return _memoryCache.Get(CreateKey(key, chatId)) as T;
+            return (T)_memoryCache.Get(CreateKey(key, chatId));
         }
 
         private static string CreateKey(string key, long chatId)
