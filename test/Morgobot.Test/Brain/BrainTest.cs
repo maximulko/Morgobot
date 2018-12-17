@@ -42,9 +42,10 @@ namespace Morgobot.Test.Brain
         [TestMethod]
         public void ContextSwitchTest()
         {
-            _sut.Analyse("секретный санта", 0);
+            var r1 = _sut.Analyse("секретный санта", 0);
+            r1.Text.Should().Be("Привет из санты");
             var result = _sut.Analyse("скажи контекст", 0);
-            result.Text.Should().Be("SecretSanta");
+            result.Text.Should().Be("Нет контекста");
         }
 
         [TestMethod]

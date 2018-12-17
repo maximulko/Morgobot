@@ -14,7 +14,7 @@ namespace Morgobot.Brain.ContextAnalysers
         {
             return new BrainResponse
             {
-                Text = "Привети из санты",
+                Text = "Привет из санты",
                 ClenUpCurrentContext = true
             };
         }

@@ -26,7 +26,8 @@ namespace Morgobot.Web.Brain
         {
             if(phrase.HasAllWords("скажи", "контекст"))
             {
-                return _perChatCache.Get<string>(CurrentContextCacheKey, chatId);
+                string contextName = _perChatCache.Get<string>(CurrentContextCacheKey, chatId);
+                return contextName ?? "Нет контекста";
             }
 
             foreach (var contextAnalyzer in _contextAnalyzers)
@@ -34,6 +35,14 @@ namespace Morgobot.Web.Brain
                 if (phrase.HasAllWords(contextAnalyzer.ContextSwitchWords))
                 {
                     _perChatCache.Set(CurrentContextCacheKey, chatId, contextAnalyzer.ContextName);
+                    var response = contextAnalyzer.Analyse(phrase);
+
+                    if (response.ClenUpCurrentContext)
+                    {
+                        _perChatCache.Set<string>(CurrentContextCacheKey, chatId, null);
+                    }
+
+                    return response.Text;
                 }
             }
 
