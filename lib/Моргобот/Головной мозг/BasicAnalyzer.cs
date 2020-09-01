@@ -80,6 +80,15 @@ namespace Morgobot.Brain
                 return "Пидора ответ!";
             }
 
+
+            if (phrase.HasAnyWord("лиля", "лили", "ліля") && phrase.HasAnyWord("брик", "брік"))
+            {
+                return "Suck the tracktor driver's dick!";
+            }
+
+
+
+
             return null;
         }
     }
